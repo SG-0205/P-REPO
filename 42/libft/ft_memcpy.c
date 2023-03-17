@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:58:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/17 14:58:10 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:48:36 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t	i;
+	size_t		i;
 	char		*ptr_dest;
 	const char	*ptr_src;
 
@@ -32,15 +32,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 // int main(void)
 // {
-// 	char	zero[]="0000";
-// 	char	zero2[]="0000";
-// 	char	test[]="1234";
-// 	char	test2[]="1234";
+// 	int	zero[]={0,0,0,0};
+// 	int	zero2[]={0,0,0,0};
+// 	int	test[]={1,2,3,4};
+// 	int	test2[]={1,2,3,4};
+// 	int i = 0;
 
 // 	ft_memcpy(test, zero, 5);
 // 	memcpy(test2, zero2, 5);
-// 		printf("%s", test);
+// 	for (i = 0; i < 5; i++)
+// 		printf("%d", test[i]);
 // 	printf("\n");
-// 		printf("%s", test2);
+// 	for (i = 0; i < 5; i++)
+// 		printf("%d", test2[i]);
 // 	return (0);
 // }
