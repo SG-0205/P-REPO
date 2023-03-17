@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 21:17:42 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/17 12:38:14 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/17 12:36:53 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
-#include <ctype.h>
+#include <string.h>
 
-int	ft_isprint(int c)
+void	ft_bzero(void *s, size_t n)
 {
-	if (c <= 31 && c >= 0)
-		return (1);
-	else
-		return (0);
+	char	*ptr;
+	size_t	i;
+
+	ptr = s;
+	i = 0;
+	while (i < n)
+	{
+		ptr[i] = '\0';
+		i ++;
+	}
 }
 
-// int main (int argc, char **argv)
+// int main(void)
 // {
-// 	if (argc != 2)
-// 		return (666);
-// 	printf("%d\t ft_isprint\n", ft_isprint(argv[1][0]));
-// 	printf("%d\t isprint", isprint(argv[1][0]));
+// 	char str[]="12456666";
+// 	ft_bzero(str, 5);
+// 	printf("%c", str[4]);
 // 	return (0);
 // }
