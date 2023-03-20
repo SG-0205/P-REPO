@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:13:33 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/17 12:37:29 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:12 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <ctype.h>
+#include "libft.h"
+
 int	ft_isalnum(int c)
 {
 	if ((c <= 'Z' && c >= 'A') || (c <= 'z' && c >= 'a')

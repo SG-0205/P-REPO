@@ -6,12 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:59:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 20:37:20 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:17:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

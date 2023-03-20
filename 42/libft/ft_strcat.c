@@ -6,11 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:58:54 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 20:35:36 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:17:00 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
+#include "libft.h"
+
 char	*ft_strcat(char *dst, const char *src)
 {
 	int	i;

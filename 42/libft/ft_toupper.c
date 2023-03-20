@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:34:25 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 21:40:39 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:18:09 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <ctype.h>
+#include "libft.h"
+
 int	ft_toupper(int c)
 {
 	if (c <= 'z' && c >= 'a')

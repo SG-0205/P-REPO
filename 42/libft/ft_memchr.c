@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 16:05:25 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/20 22:39:49 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/20 22:48:05 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 00:06:44 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
 #include "libft.h"
+// #include <ctype.h>
+// #include <stdio.h>
 
-char	*ft_strstr(const char *haystack, const char *needle)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
-	int		j;
-	char	*ptr_needle;
+	unsigned char	*ptr_s;
+	unsigned char	*ptr_c;
+	size_t			i;
 
-	ptr_needle = (char *)haystack;
-	if (needle == NULL || needle[0] == 0)
-		return (ptr_needle);
+	ptr_c = (unsigned char *)&c;
+	ptr_s = (unsigned char *)s;
 	i = 0;
-	j = 0;
-	while (haystack[i])
+	while (i < n)
 	{
-		j = 0;
-		while (haystack[i] == needle[j])
-		{
-			j ++;
-			i ++;
-			if (needle[j] == '\0')
-			{
-				ptr_needle = (char *)&haystack[i - j];
-				return (ptr_needle);
-			}
-		}
+		if (ptr_s[i] == *ptr_c)
+			return (&ptr_s[i]);
 		i ++;
 	}
 	return (NULL);
@@ -44,8 +34,11 @@ char	*ft_strstr(const char *haystack, const char *needle)
 
 // int main(int argc, char **argv)
 // {
-// 	if (argc != 3)
-// 		return (0);
-// 	printf("%s", ft_strstr(argv[1], argv[2]));
+// 	if (argc != 4)
+// 		return (1);
+// 	printf("%s\tmemchr\n", (char * )memchr(argv[1],
+// ft_atoi(argv[2]), ft_atoi(argv[3])));
+// 	printf("%s\tft_memchr\n", (char *)ft_memchr(argv[1],
+// ft_atoi(argv[2]), ft_atoi(argv[3])));
 // 	return (0);
 // }

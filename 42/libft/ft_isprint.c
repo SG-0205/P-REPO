@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:26:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 21:34:01 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:36 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <ctype.h>
+#include "libft.h"
+
 int	ft_isprint(int c)
 {
 	if (!(c <= 31 && c >= 0))

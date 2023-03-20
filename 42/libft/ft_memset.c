@@ -6,12 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:44:44 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/17 12:22:46 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:54 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

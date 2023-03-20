@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:40:51 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 21:43:31 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:18:02 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <ctype.h>
+#include "libft.h"
+
 int	ft_tolower(int c)
 {
 	if (c <= 'Z' && c >= 'A')

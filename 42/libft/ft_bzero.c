@@ -6,12 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/17 12:36:53 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:03 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

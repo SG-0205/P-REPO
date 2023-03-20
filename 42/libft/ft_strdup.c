@@ -6,11 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:00:25 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/10 16:30:40 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:10:30 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s)
 {

@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 20:51:15 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 21:22:19 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:31 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <ctype.h>
+#include "libft.h"
+
 int	ft_isdigit(int c)
 {
 	if (c <= '9' && c >= '0')

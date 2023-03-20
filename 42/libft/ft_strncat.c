@@ -6,12 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:00:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 20:38:45 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:17:35 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strncat(char *dest, const char *src, size_t sz)
 {

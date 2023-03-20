@@ -6,13 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:59:19 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 20:30:15 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:17:10 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 // #include <stdio.h>
-//TYPE CONST???
+
 char	*ft_strchr(const char *s, int c)
 {
 	int			i;

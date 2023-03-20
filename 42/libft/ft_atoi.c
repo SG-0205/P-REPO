@@ -6,12 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:34:33 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/10 16:24:08 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:15:45 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 // #include <stdlib.h>
+#include "libft.h"
+
 void	ft_varinit(int *a, int *b, int *c, int *d)
 {
 	*a = 0;
