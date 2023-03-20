@@ -6,11 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:00:42 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/16 20:38:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:08:05 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(const char *str)
+#include "libft.h"
+
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
