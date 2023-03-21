@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 00:16:56 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/21 12:50:29 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 13:15:10 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_strdel(char **as)
 {
-	char	*ptr;
-	size_t	i;
-
-	ptr = s;
-	i = 0;
-	while (i < n)
+	if (as != NULL && *as != NULL)
 	{
-		ptr[i] = 0;
-		i ++;
+		free(*as);
+		*as = NULL;
 	}
 }
 
 // int main(void)
 // {
-// 	char str[]="12456666";
-// 	ft_bzero(str, 5);
-// 	printf("%c", str[4]);
+// 	char	**strtest = (char **)malloc(sizeof(char *));
+// 	strtest[0]= (char *)malloc(sizeof(char));
+// 	ft_strdel(strtest);
 // 	return (0);
 // }

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 00:16:56 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/21 12:22:45 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 20:54:15 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
 #include "libft.h"
+// #include <stdio.h>
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strnew(size_t size)
 {
-	char	*ptr;
-	size_t	i;
+	char	*strnew;
 
-	ptr = s;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i ++;
-	}
+	strnew = (char *)malloc(size * sizeof(char) + 1);
+	if (!strnew)
+		return (NULL);
+	ft_bzero(strnew, size);
+	strnew[size] = '\0';
+	return (strnew);
 }
 
-// int main(void)
-// {
-// 	char str[]="12456666";
-// 	ft_bzero(str, 5);
-// 	printf("%c", str[4]);
+// int main (void){
+// 	char	*str;
+// 	int i = 0;
+// 	str = ft_strnew(5);
+// 	while (i < 7)
+// 	{
+// 		printf("%d", str[i]);
+// 		i ++;
+// 	}
 // 	return (0);
 // }

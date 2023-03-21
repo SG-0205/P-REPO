@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:44:44 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/20 22:16:54 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/21 00:28:32 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	str = s;
 	i = 0;
-	while (str[i] && i < n)
+	while (i < n)
 	{
 		str[i] = c;
 		i ++;

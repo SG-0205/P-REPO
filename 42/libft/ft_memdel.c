@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 00:16:56 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/21 00:29:49 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 12:43:24 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
 #include "libft.h"
+// #include <stdio.h>
 
-void	ft_bzero(void *s, size_t n)
+void	ft_memdel(void **ap)
 {
-	char	*ptr;
-	size_t	i;
-
-	ptr = s;
-	i = 0;
-	while (i < n)
+	if (ap != NULL && *ap != NULL)
 	{
-		ptr[i] = 0;
-		i ++;
+		free(*ap);
+		*ap = NULL;
 	}
 }
 
-// int main(void)
+// int main(int argc, char **argv)
 // {
-// 	char str[]="12456666";
-// 	ft_bzero(str, 5);
-// 	printf("%c", str[4]);
+// 	if (argc != 4)
+// 		return (1);
+// 	char *p1 = argv[1];
+// 	char *p2 = argv[2];
+// 	char *p3 = argv[3];
+// 	char **array = (char **)malloc(3 * sizeof (char*));
+// 	array[0] = p1;
+// 	array[1] = p2;
+// 	array[2] = p3;
+// 	ft_memdel((void **)array);
+// 	printf("%s, %s, %s", array[0], array[1], array[2]);
 // 	return (0);
 // }

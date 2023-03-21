@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:25:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 00:16:56 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/21 13:16:49 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 13:25:06 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
 #include "libft.h"
+// #include <stdio.h>
 
-void	ft_bzero(void *s, size_t n)
+void	ft_strclr(char *s)
 {
-	char	*ptr;
-	size_t	i;
-
-	ptr = s;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i ++;
-	}
+	ft_bzero(s, ft_strlen(s));
 }
 
-// int main(void)
+// int main (int argc, char **argv)
 // {
-// 	char str[]="12456666";
-// 	ft_bzero(str, 5);
-// 	printf("%c", str[4]);
+// 	if (argc != 2)
+// 		return (1);
+// 	char	*str = argv[1];
+// 	printf("%s\tavant ft_strclr\n", str);
+// 	ft_strclr(str);
+// 	printf("%s\tligne vide si OK.", str);
 // 	return (0);
 // }

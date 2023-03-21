@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:03:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 00:03:40 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:42:38 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strncpy(char *dest, const char *src, size_t sz)
 	size_t	i;
 
 	i = 0;
-	while (src[i] && i < sz)
+	while (i < sz)
 	{
 		dest[i] = src[i];
 		i ++;

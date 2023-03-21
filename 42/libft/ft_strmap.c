@@ -1,45 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 16:00:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 20:55:45 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/21 20:08:22 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/21 20:51:51 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
-// #include <stdlib.h>
 #include "libft.h"
+// #include <stdio.h>
 
-char	*ft_strcpy(char *dst, const char *src)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
 	size_t	i;
 	size_t	len;
+	char	*new_str;
 
-	len = ft_strlen(src);
+	if (!s || !f)
+		return (NULL);
+	len = ft_strlen((char *)s);
 	i = 0;
-	while (i < len)
+	new_str = (char *)malloc(len * sizeof(char) + 1);
+	while (s[i])
 	{
-		dst[i] = src[i];
+		new_str[i] = f(s[i]);
 		i ++;
 	}
-	dst[i] = '\0';
-	return (dst);
+	new_str[i] = 0;
+	return (new_str);
 }
 
-// int main(){
-// 	char	src[]="ZAZU ZAVA?";
-// 	char	*dest;
-// 	int		i = 0;
+// char	test_strmap(char c)
+// {
+// 	char	d;
+// 	d = ft_toupper(c);
+// 	return (d);
+// }
 
-// 	while (src[i])
-// 		i ++;
-// 	dest = (char *)malloc(i * sizeof(char) + 1);
-// 	dest = ft_strcpy(dest, src);
-// 	printf("%s", dest);
-// 	free(dest);
+// int	main(void)
+// {
+// 	void	*ptr_f = &test_strmap;
+// 	char	str[]="ZAZUzep05";
+// 	printf("%s", ft_strmap(str, ptr_f));
 // 	return (0);
 // }
