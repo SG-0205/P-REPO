@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 21:06:27 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/22 12:43:37 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/22 13:12:59 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/22 13:41:16 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 // #include <stdio.h>
 
-int	ft_strequ(const char *s1, const char *s2)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	if (ft_strcmp(s1, s2) == 0)
-		return (1);
-	else
-		return (0);
+	char	*new_str;
+	size_t	i;
+
+	i = 0;
+	new_str = ft_strnew(len);
+	if (!new_str)
+		return (NULL);
+	while (i < len)
+	{
+		new_str[i] = s[start + i];
+		i++;
+	}
+	return (new_str);
 }
 
 // int main(int argc, char **argv)
 // {
-// 	if (argc != 3)
+// 	if (argc != 4)
 // 		return (1);
-// 	printf("%d\tstrcmp\n", strcmp(argv[1], argv[2]));
-// 	printf("%d\tft_strcmp\n", strcmp(argv[1], argv[2]));
-// 	printf("%d\tft_streq\n", ft_strequ(argv[1], argv[2]));
+// 	printf("%s", ft_strsub(argv[1], (unsigned int)ft_atoi(argv[2]),
+// (size_t)ft_atoi(argv[3])));
 // 	return (0);
 // }

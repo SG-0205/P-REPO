@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:02:59 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/21 21:50:29 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:09:30 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	i = 0;
 	if (s1 == NULL || s2 == NULL)
 		return (0);
-	while (s1[i] == s2[i] && (s1[i] && s2[i]) && i < n)
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i] && i < n - 1)
 		i++;
 	return (s1[i] - s2[i]);
 }
