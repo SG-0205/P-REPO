@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_countwords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:23:38 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/24 16:49:00 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/26 23:28:08 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/29 18:11:01 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 // #include <stdio.h>
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+size_t	ft_countwords(const char *s, char c)
 {
-	unsigned int	i;
+	size_t	words;
+	size_t	i;
 
+	words = 0;
 	i = 0;
-	if (s)
+	while (s[i] != '\0')
 	{
-		while (s[i])
-		{
-			(*f)(i, s + i);
-			i++;
-		}
+		if ((i == 0 || s[i - 1] == c) && s[i] != c)
+			words++;
+		i++;
 	}
+	return (words);
 }
 
-// void	test_ft_upper(char *c)
+// int main(int argc, char **argv)
 // {
-// 	*c = *c - 32;
-// }
-
-// int main(void)
-// {
-// 	char	s[] = "abcdef";
-// 	void	*ptr_f = &test_ft_upper;
-// 	ft_striter(s, ptr_f);
-// 	printf("%s\t<Doit être en MAJ", s);
+// 	if (argc != 3)
+// 		return (1);
+// 	printf("%ld mots détectés avec l'espaceur '%c'", 
+//ft_countwords(argv[1], argv[2][0]), argv[2][0]);
 // 	return (0);
 // }

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cisar.c                                         :+:      :+:    :+:   */
+/*   ft_lentillc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 15:15:39 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/29 18:11:16 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/29 15:04:36 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/29 18:11:43 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_cisar(char c, const char *array)
+#include "libft.h"
+
+size_t	ft_lentillc(const char *s, char c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (array[i])
-	{
-		if (array[i] == c)
-			return (1);
+	while (s[i] != c && s[i])
 		i ++;
-	}
-	return (0);
+	return (i);
 }

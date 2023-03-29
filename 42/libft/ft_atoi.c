@@ -6,21 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:34:33 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/20 22:15:45 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:26:57 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
-// #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
-
-void	ft_varinit(int *a, int *b, int *c, int *d)
-{
-	*a = 0;
-	*b = 0;
-	*c = 0;
-	*d = 0;
-}
 
 int	ft_atoi(const char *nptr)
 {
@@ -29,9 +21,11 @@ int	ft_atoi(const char *nptr)
 	int	min_count;
 	int	max_count;
 
-	ft_varinit(&i, &res, &min_count, &max_count);
-	while ((nptr[i] >= '0' && nptr[i] <= '9')
-		|| (nptr[i] >= 1 && nptr[i] <= 31)
+	i = 0;
+	res = 0;
+	min_count = 0;
+	max_count = 0;
+	while ((nptr[i] >= '0' && nptr[i] <= '9') || (nptr[i] >= 1 && nptr[i] <= 31)
 		|| (nptr[i] == '+' || nptr[i] == '-'))
 	{
 		if (nptr[i] == '+')
