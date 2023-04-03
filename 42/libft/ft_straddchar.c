@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_straddchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 21:26:48 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/04/03 18:31:16 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/03/31 15:34:58 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/03/31 15:37:23 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
-// #include <ctype.h>
 #include "libft.h"
 
-int	ft_isprint(int c)
-{
-	if (!((c <= 31) && (c >= 0)) && c != 127)
-		return (16384);
-	else
-		return (0);
-}
-
-// int main (int argc, char **argv)
+// void	ft_straddchar(char *str, char *c, size_t index)
 // {
-// 	if (argc != 2)
-// 		return (666);
-// 	printf("%d\t ft_isprint\n", ft_isprint(argv[1][0]));
-// 	printf("%d\t isprint", isprint(argv[1][0]));
-// 	return (0);
+	
 // }

@@ -6,13 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:34:33 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/29 18:26:57 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:16:02 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "libft.h"
+// #include <stdlib.h>
+// #include "libft.h"
 
 int	ft_atoi(const char *nptr)
 {
