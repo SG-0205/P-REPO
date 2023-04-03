@@ -6,14 +6,14 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:09:26 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/04/03 18:37:50 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:29:23 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// #include <stdio.h>
+#include <stdio.h>
 
-int		len(long nb)
+int	len(long nb)
 {
 	int		len;
 
@@ -33,14 +33,13 @@ int		len(long nb)
 
 char	*ft_itoa(int nb)
 {
-	char *str;
+	char	*str;
 	long	n;
 	int		i;
 
 	n = nb;
 	i = len(n);
-	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
+	str = ft_strnew(i);
 	str[i--] = '\0';
 	if (n == 0)
 	{
