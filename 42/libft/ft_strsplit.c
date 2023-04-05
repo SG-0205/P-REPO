@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:49:51 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/03/29 18:34:38 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:32:55 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ char	**ft_strsplit(const char *s, char c)
 	return (array);
 }
 
-// int main(int argc, char **argv)
-// {
-// 	if (argc != 3)
-// 		return (1);
-// 	char **array = ft_strsplit(argv[1], argv[2][0]);
-// 	printf("%s\t%s\t%s",array[0],  array[1], array[2]);
-// 	return (0);
-// }
+int main(int argc, char **argv)
+{
+	if (argc != 3)
+		return (1);
+	char **array = ft_strsplit(argv[1], argv[2][0]);
+	printf("%s\t%s\t%s",array[0],  array[1], array[2]);
+	return (0);
+}
