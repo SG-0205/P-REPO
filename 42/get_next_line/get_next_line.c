@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 21:42:06 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/06/27 11:25:32 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/06/27 12:48:25 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	i = 0;
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	line = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = ft_strnew(BUFFER_SIZE);
+	line = ft_strnew(BUFFER_SIZE);
 	while (1)
 	{
 		if (i == BUFFER_SIZE)
@@ -48,16 +48,16 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-int main(void)
-{
-	int fd = open("test", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	close(fd);
-	return (0);
-}
+// int main(void)
+// {
+// 	int fd = open("test", O_RDONLY);
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	close(fd);
+// 	return (0);
+// }
