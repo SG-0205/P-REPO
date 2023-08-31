@@ -1,19 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_f.c                                     :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 14:38:01 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/23 16:40:20 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/08/31 19:48:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#include "push_swap.h"
 
-void	ft_putchar_f(char c, int *len)
-{
-	write(1, &c, 1);
-	*len += 1;
-}
+void	stack_init(void){}

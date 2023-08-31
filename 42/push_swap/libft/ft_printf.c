@@ -6,13 +6,12 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 23:43:36 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/23 16:39:56 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:33:08 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
+// #include <stdio.h>
 
 static void	ft_specparsing(const char *format, va_list args, int *computed_len)
 {

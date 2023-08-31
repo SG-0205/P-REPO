@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printpointer.c                                  :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 19:01:47 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/23 16:47:00 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/06/29 11:12:43 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/08/23 22:17:17 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_printpointer(unsigned long long pointer, const char *base, int *len)
-{
-	if (!pointer)
-		ft_putstr_f("(nil)", len);
-	else
-	{
-		ft_putstr_f("0x", len);
-		ft_putunsigned(pointer, base, len);
-	}
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 24
+# endif
+
+# include <stdlib.h>
+# include <unistd.h>
+
+size_t	ft_strlen_gnl(char *str);
+char	*ft_strcat_gnl(char *dst, char *src);
+char	*ft_strnew_gnl(size_t size);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+
+char	*get_next_line(int fd);
+#endif

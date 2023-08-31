@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:40:57 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/20 18:37:27 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:49:12 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include "gnl/get_next_line.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -109,5 +110,21 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 
 int					ft_cisar(char c, const char *array);
+
+//PRINTF
+
+# include <stdarg.h>
+
+# define SPEC "csdiupxX%"
+# define BASE_HEX_MIN "0123456789abcdef"
+# define BASE_HEX_MAJ "0123456789ABCDEF"
+# define BASE_TEN "0123456789"
+
+void	ft_putunsigned(unsigned long long nbr, const char *base, int *len);
+void	ft_putnbr_base_f(int nbr, const char *base, int *len);
+void	ft_printpointer(unsigned long long pointer, const char *base, int *len);
+void	ft_putchar_f(char c, int *len);
+void	ft_putstr_f(const char *str, int *len);
+int		ft_printf(const char *format, ...);
 
 #endif

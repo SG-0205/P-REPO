@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_f.c                                      :+:      :+:    :+:   */
+/*   ft_printpointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 19:05:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/23 16:37:52 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/05/20 19:01:47 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/08/24 11:33:23 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#include "libft.h"
 
-void	ft_putstr_f(const char *str, int *len)
+void	ft_printpointer(unsigned long long pointer, const char *base, int *len)
 {
-	if (!str)
-		ft_putstr_f("(null)", len);
+	if (!pointer)
+		ft_putstr_f("(nil)", len);
 	else
 	{
-		while (*str != '\0')
-		{
-			ft_putchar_f(*str, len);
-			str ++;
-		}
+		ft_putstr_f("0x", len);
+		ft_putunsigned(pointer, base, len);
 	}
 }

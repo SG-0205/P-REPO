@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlink.c                                       :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 13:22:18 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/03 13:39:09 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/08/31 17:36:22 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "libft.h"
-// #include <stdarg.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-// void	ft_lstlink(size_t size, ...)
-// {
-// 	va_list	args;
-// 	size_t	i;
+# include "libft/libft.h"
 
-// 	i = 0;
-// 	va_start(args, size);
-// 	while (i < size);
-// 	{
-// 		//2BContinued
-// 	}
-// }
+typedef struct s_stack{
+	t_list	*top_item;
+	int		size;
+}	t_stack;
+
+#endif

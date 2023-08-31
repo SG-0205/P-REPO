@@ -6,11 +6,11 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:12:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/23 16:40:41 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:34:11 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#include "libft.h"
 
 void	ft_erreur(const char *base, int *erreur)
 {

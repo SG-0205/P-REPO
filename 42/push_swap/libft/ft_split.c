@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:49:51 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/17 14:17:51 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/08/24 10:33:01 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	**ft_split(char const *s, char c)
 // 	{
 // 		printf("%s\n", array[i]);
 // 		i ++;
-// 	}cd
+// 	}
+// 	ft_checkalloc(array, i);
 // 	return (0);
 // }
-//
