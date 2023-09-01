@@ -6,18 +6,18 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:44:27 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/10 17:14:27 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/01 23:25:42 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <stdio.h>
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	res;
-	int	min_count;
+	int			i;
+	long int	res;
+	int			min_count;
 
 	i = 0;
 	res = 0;
