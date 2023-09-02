@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/01 23:33:48 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/02 23:01:52 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,35 @@ void	error(void)
 	exit(0);
 }
 
-void	args_checker(int argc, char **args)
+void	doublon_check(int argc, char **args)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(args[i], args[j]) == 0)
+				error();
+			j ++;
+		}
+		i ++;
+	}
+}
+
+void	input_checker(int argc, char **args)
 {
 	int			i;
 	int			j;
 	long int	value;
 	
 	i = 1;
-	value = ft_atoi(args[i]);
 	while (i < argc)
 	{
+		value = ft_atoi(args[i]);
 		j = 0;
 		if (value > __INT_MAX__
 			|| value < (__INT_MAX__ * -1 + 1))
@@ -40,6 +59,27 @@ void	args_checker(int argc, char **args)
 		}
 		i ++;
 	}
+	doublon_check(argc, args);
+}
+
+void	init_stacks(t_stack *stack_a, t_stack *stack_b, int argc, char **args)
+{
+	int		i;
+	void	*value;
+	t_list	*first_elem;
+	t_list	*stack_elem;
+
+	i = 1;
+	ft_memcpy(value, ft_atoi(args[i]));
+	first_elem = ft_lstnew((void *)&value);
+	i ++;
+	while (i < argc)
+	{
+		value = ft_atoi(args[i]);
+		stack_elem = ft_lstnew((void *)&value);
+		ft_lstadd_back(&first_elem, stack_elem);
+		i ++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -49,7 +89,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		error();
-	args_checker(argc, argv);
+	input_checker(argc, argv);
 	
 	return (0);
 }
