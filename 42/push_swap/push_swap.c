@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/01 18:43:43 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:33:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,45 @@ void	error(void)
 {
 	ft_putendl("Error");
 	exit(0);
+}
+
+void	stack_init(t_stack stack_a, int argc, char **argv)
+{
+	int			i;
+	t_list_ps	*new;
+	t_list_ps	*top;
+
+	i = 2;
+	top = ft_lstnew_ps(ft_atoi(argv[1]));
+	if (!top)
+		error();
+	while (i < argc)
+	{
+		new = ft_lstnew_ps(ft_atoi(argv[i]));
+		if (!new)
+			ft_lstclear_ps(&top, free);
+		ft_lstadd_back_ps(&top, new);
+		i ++;
+	}
+}
+
+void	doublon_check(int argc, char **args)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(args[i], args[j]) == 0)
+				error();
+			j ++;
+		}
+		i ++;
+	}
 }
 
 void	args_checker(int argc, char **args)
@@ -40,6 +79,7 @@ void	args_checker(int argc, char **args)
 		}
 		i ++;
 	}
+	doublon_check(argc, args);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 21:42:06 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/08/23 22:18:22 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:53:17 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*get_next_line(int fd)
 	i = 0;
 	buff = ft_strnew_gnl(BUFFER_SIZE);
 	line = ft_strnew_gnl(BUFFER_SIZE);
+	if (!buff || !line)
+		return (NULL);
 	while (1)
 	{
 		update_buff(&line, &buff, &i);
