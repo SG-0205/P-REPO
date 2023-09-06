@@ -6,13 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/04 18:18:08 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:55:19 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list_ps	*ft_lstmap_ps(t_list_ps *lst, void *(*f)(int), void (*del)(int))
+t_list_ps	*ft_lstmap_ps(t_list_ps *lst, int (*f)(int))
 {
 	t_list_ps	*begin;
 	t_list_ps	*work;
@@ -28,7 +28,7 @@ t_list_ps	*ft_lstmap_ps(t_list_ps *lst, void *(*f)(int), void (*del)(int))
 			lst = lst->next;
 			if (work == NULL)
 			{
-				ft_lstclear_ps(&begin, del);
+				ft_lstclear_ps(&begin);
 				return (NULL);
 			}
 			work->next = ft_lstnew_ps(f(lst->value));
@@ -50,16 +50,16 @@ void	ft_lstiter_ps(t_list_ps *lst, void (*f)(int))
 	}
 }
 
-void	ft_lstclear_ps(t_list_ps **lst, void (*del)(int))
+void	ft_lstclear_ps(t_list_ps **lst)
 {
 	t_list_ps	*tmp;
 
-	if (lst && del && *lst)
+	if (lst && *lst)
 	{
-		while (*lst && *del)
+		while (*lst)
 		{
 			tmp = (*lst)->next;
-			ft_lstdelone_ps(*lst, del);
+			ft_lstdelone_ps(*lst);
 			*lst = tmp;
 		}
 	}

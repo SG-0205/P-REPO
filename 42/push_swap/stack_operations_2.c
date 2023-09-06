@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_management_low.c                              :+:      :+:    :+:   */
+/*   stack_operations_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/05 17:56:05 by sgoldenb         ###   ########.fr       */
+/*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
+/*   Updated: 2023/09/06 19:53:45 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list_ps	*ft_lstnew_ps(int value)
-{
-	t_list_ps	*new;
-
-	new = (t_list_ps *)malloc(sizeof(t_list_ps));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->next = NULL;
-	return (new);
-}
-
-t_list_ps	*ft_lstlast_ps(t_list_ps *lst)
+void	rotate_b(t_stack *b)
 {
 	t_list_ps	*tmp;
 
-	if (!lst)
-		return (NULL);
-	if (!(lst->next))
-		return (lst);
-	tmp = lst->next;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-void	ft_lstdelone_ps(t_list_ps *lst)
-{
-	if (!lst)
-		return ;
-	free(lst);
+	if (!b)
+		return;
+	tmp = b->top_item;
+	b->top_item = b->top_item->next;
+	tmp->next = NULL;
+	ft_lstadd_back_ps(&b->top_item, tmp);
+	b->last_item = ft_lstlast_ps(b->top_item);
+	ft_putendl("rb");
+	printstack(b, 'b');
 }

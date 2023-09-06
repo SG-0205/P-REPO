@@ -6,80 +6,28 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/04 18:33:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:54:43 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(void)
+void	printstack(t_stack *stack, char name)
 {
-	ft_putendl("Error");
-	exit(0);
-}
-
-void	stack_init(t_stack stack_a, int argc, char **argv)
-{
-	int			i;
-	t_list_ps	*new;
-	t_list_ps	*top;
-
-	i = 2;
-	top = ft_lstnew_ps(ft_atoi(argv[1]));
-	if (!top)
-		error();
-	while (i < argc)
-	{
-		new = ft_lstnew_ps(ft_atoi(argv[i]));
-		if (!new)
-			ft_lstclear_ps(&top, free);
-		ft_lstadd_back_ps(&top, new);
-		i ++;
-	}
-}
-
-void	doublon_check(int argc, char **args)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < argc)
-	{
-		j = i + 1;
-		while (j < argc)
-		{
-			if (ft_strcmp(args[i], args[j]) == 0)
-				error();
-			j ++;
-		}
-		i ++;
-	}
-}
-
-void	args_checker(int argc, char **args)
-{
-	int	i;
-	int	j;
+	t_list_ps	*next;
 	
-	i = 1;
-	if (argc == 1)
-		error();
-	while (i < argc)
+	ft_printf("Stack %c\n", name);
+	next = stack->top_item;
+	while (next)
 	{
-		j = 0;
-		if (ft_atoi(args[i]) > __INT_MAX__
-			|| ft_atoi(args[i]) < (__INT_MAX__ * -1 + 1))
-				error();
-		while (args[i][j])
-		{
-			if (ft_isdigit(args[i][j]) == 0)
-				error();
-			j ++;
-		}
-		i ++;
+		ft_printf("%d\n", next->value);
+		next = next->next;
 	}
-	doublon_check(argc, args);
+	ft_printf("Taille de la stack : %d\n", stack->size);
+	if (stack->top_item)
+		ft_printf("1ere valeur : %d\n", stack->top_item->value);
+	if (stack->last_item)
+		ft_printf("Derniere valeur : %d\n\n", stack->last_item->value);
 }
 
 int	main(int argc, char **argv)
@@ -87,7 +35,14 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-	args_checker(argc, argv);
-	
+	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
+	push_b(&a, &b);
+	// printstack(&a, 'a');
+	push_b(&a, &b);
+	// push_a(&a, &b);
+	rotate_a(&a);
+	rotate_b(&b);
+	// swap(&a, TRUE);
+	// swap(&a, TRUE);
 	return (0);
 }
