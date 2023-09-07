@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 22:26:31 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 10:57:30 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:34:04 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_median(t_stack *stack)
 
 	place = -1;
 	tmp = stack->top_item;
-	while (++place <= (stack->size / 2))
+	while (++place < (stack->size / 2))
 		tmp = tmp->next;
 	ft_printf("Médiane : %d\n", place);
 	return (place);
@@ -67,6 +67,7 @@ void	quick_sort(t_stack *a, t_stack *b)
 	int	pivot_value;
 
 	pivot_value = (get_median_item(a, get_median(a)))->value;
+	ft_printf("\nPIVOT : %d\n", pivot_value);
 	while (a->top_item)
 	{
 		if (a->top_item->value < pivot_value)
@@ -74,4 +75,5 @@ void	quick_sort(t_stack *a, t_stack *b)
 		else
 			a->top_item = a->top_item->next;
 	}
+	printstack(a, 'a');
 }
