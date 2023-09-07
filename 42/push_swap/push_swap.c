@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 19:54:43 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:54:41 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,22 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
-	push_b(&a, &b);
+	quick_sort(&a, &b);
+	// medianof3_pivot(&a);
+	// push_b(&a, &b);
 	// printstack(&a, 'a');
-	push_b(&a, &b);
+	// push_b(&a, &b);
+	// push_b(&a, &b);
 	// push_a(&a, &b);
-	rotate_a(&a);
-	rotate_b(&b);
+	// rotate_a(&a, FALSE);
+	// rotate_a(&a, FALSE);
+	// rotate_a(&a, FALSE);
+	// reverse_r_a(&a, FALSE);
+	// reverse_r_a(&a, FALSE);
+	// reverse_r_a(&a, FALSE);
+	// printstack(&a, 'a');
+	// ft_lstbflast(a.top_item);
+	// rotate_b(&b, FALSE);
 	// swap(&a, TRUE);
 	// swap(&a, TRUE);
 	return (0);

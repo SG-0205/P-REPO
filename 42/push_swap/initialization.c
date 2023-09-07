@@ -6,13 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 19:16:57 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:51:05 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(void)
+void	error()
 {
 	ft_putendl("Error");
 	exit(0);

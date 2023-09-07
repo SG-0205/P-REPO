@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/05 17:55:19 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:52:48 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,17 @@ t_list_ps	*ft_lstmap_ps(t_list_ps *lst, int (*f)(int))
 	return (NULL);
 }
 
-void	ft_lstiter_ps(t_list_ps *lst, void (*f)(int))
+t_list_ps	*ft_lstbflast(t_list_ps *top)
 {
-	if (!lst || !f)
-		return ;
-	while (lst != NULL)
-	{
-		(*f)(lst->value);
-		lst = lst->next;
-	}
+	t_list_ps	*tmp;
+	
+	if (!top)
+		return (NULL);
+	tmp = top;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	ft_printf("Avant dernier : %d\n", tmp->value);
+	return (tmp);
 }
 
 void	ft_lstclear_ps(t_list_ps **lst)

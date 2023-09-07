@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 19:53:12 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:28:31 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,20 @@ void	push_b(t_stack *a, t_stack *b)
 	printstack(b, 'b');
 }
 
-void	rotate_a(t_stack *a)
+void	rotate_a(t_stack *a, t_bool rr)
 {
 	t_list_ps	*tmp;
 
-	if (!a)
+	if (!a || a->size == 1)
 		return;
 	tmp = a->top_item;
 	a->top_item = a->top_item->next;
 	tmp->next = NULL;
 	ft_lstadd_back_ps(&a->top_item, tmp);
 	a->last_item = ft_lstlast_ps(a->top_item);
-	ft_putendl("ra");
+	if (rr == TRUE)
+		ft_putendl("rr");
+	else
+		ft_putendl("ra");
 	printstack(a, 'a');
 }
