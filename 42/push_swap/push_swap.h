@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 10:33:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 20:48:22 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,25 @@ void		doublon_check(int argc, char **args);
 void		args_checker(int argc, char **args);
 void		printstack(t_stack *stack, char name);
 
-void		swap(t_stack *stack, t_bool isA);
+void		swap_a(t_stack *stack, t_bool ss);
+void		swap_b(t_stack *stack, t_bool ss);
 void		swap_both(t_stack *a, t_stack *b);
 void		push_a(t_stack *a, t_stack *b);
 void		push_b(t_stack *a, t_stack *b);
 void		rotate_a(t_stack *a, t_bool rr);
 void		rotate_b(t_stack *b, t_bool rr);
 void		reverse_r_a(t_stack *a, t_bool rrr);
+void		reverse_r_b(t_stack *b, t_bool rrr);
 
 int			get_median(t_stack *stack);
+t_list_ps 	*get_median_item(t_stack *stack, int pivot_location);
 int			medianof3_pivot(t_stack *a);
-void		quick_sort(t_stack *a, t_stack *b);
+void		quick_sort(t_stack *a, t_stack *b, char from_name);
+t_bool		sort_check(t_stack *a);
+t_bool		end_check(t_stack *stack, char name, void (*swap)(t_stack *, t_bool));
+void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),
+void (*reverse_r)(t_stack *, t_bool));
+
 
 t_list_ps	*ft_lstnew_ps(int value);
 void		ft_lstdelone_ps(t_list_ps *lst);

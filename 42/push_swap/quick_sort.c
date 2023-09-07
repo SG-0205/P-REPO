@@ -6,74 +6,64 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 22:26:31 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 16:34:04 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 20:58:38 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list_ps *get_median_item(t_stack *stack, int pivot_location)
+static void	operations_init(void **functions, char name)
 {
-	int			i;
-	t_list_ps	*tmp;
-
-	i = -1;
-	tmp = stack->top_item;
-	while (++i < pivot_location)
-		tmp = tmp->next;
-	ft_printf("\nValeur médiane : %d", tmp->value);
-	return (tmp);
-}
-
-int	get_median(t_stack *stack)
-{
-	int			place;
-	t_list_ps	*tmp;
-
-	place = -1;
-	tmp = stack->top_item;
-	while (++place < (stack->size / 2))
-		tmp = tmp->next;
-	ft_printf("Médiane : %d\n", place);
-	return (place);
-}
-
-int	medianof3_pivot(t_stack *a)
-{
-	int	pivot;
-	int	*values;
-	int	i;
-	int j;
-	
-	i = 0;
-	pivot = 0;
-	j = 0;
-	values = (int *)malloc(3 * sizeof (int));
-	values[0] = a->top_item->value;
-	values[1] = get_median(a);
-	values[2] = a->last_item->value;
-	while (i < 3)
+	if (!functions)
+		return ;
+	if (name == 'a')
 	{
-		if (values[i] < values[j])
-			pivot = values[j];
-		i ++;
+		functions[0] = push_b;
+		functions[1] = reverse_r_a;
+		functions[2] = swap_a;
+		functions[3] = rotate_a;
+		return ;
 	}
-	free(values);
-	return (pivot);
+	if (name == 'b')
+	{
+		functions[0] = push_a;
+		functions[1] = reverse_r_b;
+		functions[2] = swap_b;
+		functions[3] = rotate_b;
+		return ;
+	}
 }
 
-void	quick_sort(t_stack *a, t_stack *b)
+static void	sort(t_stack *a, t_stack *b, int pivot_value, char name)
 {
-	int	pivot_value;
+	void	**operations;
+	
+	operations = (void **)malloc(4 * sizeof(void *));
+	operations_init(operations, name);
+	while (1)
+	{
+		printstack(a, name);
+		if (a->top_item->value < pivot_value)
+			push_b(a, b);
+		else if (a->last_item->value < pivot_value)
+			reverse_r_a(a, FALSE);
+		else if (a->top_item->next && a->top_item->next->value < pivot_value)
+			swap_a(a, FALSE);
+		else if (a->top_item->next && a->top_item->next->value > pivot_value)
+			rotate_a(a, FALSE);
+		else
+			break;
+	}
+}
+
+void	quick_sort(t_stack *a, t_stack *b, char from_name)
+{
+	int			pivot_value;
 
 	pivot_value = (get_median_item(a, get_median(a)))->value;
 	ft_printf("\nPIVOT : %d\n", pivot_value);
-	while (a->top_item)
-	{
-		if (a->top_item->value < pivot_value)
-			push_b(a, b);
-		else
-			a->top_item = a->top_item->next;
-	}
-	printstack(a, 'a');
+	sort(a, b, pivot_value, from_name);
+	if (end_check(a, 'a', swap_a) == FALSE)
+		quick_sort(a, b, 'a');
+	// printstack(a, 'a');
 }

@@ -6,13 +6,13 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 20:28:31 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 21:00:40 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack *stack, t_bool isA)
+void	swap_a(t_stack *stack, t_bool ss)
 {	
 	t_list_ps	*tmp;
 	
@@ -22,22 +22,30 @@ void	swap(t_stack *stack, t_bool isA)
 	stack->top_item = tmp->next;
 	tmp->next = stack->top_item->next;
 	stack->top_item->next = tmp;
-	printstack(stack, 'a');
-	if (isA == 3)
+	// printstack(stack, 'a');
+	if (ss == TRUE)
 		ft_putendl("ss");
-	else if (isA == TRUE)
+	else if (ss == FALSE)
 		ft_putendl("sa");
-	else if (isA == FALSE)
+}
+
+void	swap_b(t_stack *stack, t_bool ss)
+{	
+	t_list_ps	*tmp;
+	
+	if (stack->size < 2 || !stack)
+		return;
+	tmp = stack->top_item;
+	stack->top_item = tmp->next;
+	tmp->next = stack->top_item->next;
+	stack->top_item->next = tmp;
+	// printstack(stack, 'a');
+	if (ss == TRUE)
+		ft_putendl("ss");
+	else if (ss == FALSE)
 		ft_putendl("sb");
 }
 
-void	swap_both(t_stack *a, t_stack *b)
-{
-	if (!a || !b)
-		return;
-	swap(a, 3);
-	swap(b, 3);
-}
 
 void	push_a(t_stack *a, t_stack *b)
 {
@@ -53,7 +61,7 @@ void	push_a(t_stack *a, t_stack *b)
 	a->size ++;
 	a->last_item = ft_lstlast_ps(a->top_item);
 	ft_putendl("pa");
-	printstack(a, 'a');
+	// printstack(a, 'a');
 }
 
 void	push_b(t_stack *a, t_stack *b)
@@ -70,7 +78,7 @@ void	push_b(t_stack *a, t_stack *b)
 	b->size ++;
 	b->last_item = ft_lstlast_ps(b->top_item);
 	ft_putendl("pb");
-	printstack(b, 'b');
+	// printstack(b, 'b');
 }
 
 void	rotate_a(t_stack *a, t_bool rr)
@@ -88,5 +96,5 @@ void	rotate_a(t_stack *a, t_bool rr)
 		ft_putendl("rr");
 	else
 		ft_putendl("ra");
-	printstack(a, 'a');
+	// printstack(a, 'a');
 }

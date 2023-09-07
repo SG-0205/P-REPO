@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 22:08:42 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:55:09 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void	rotate_b(t_stack *b, t_bool rr)
 	else
 		ft_putendl("rb");
 	printstack(b, 'b');
-}
-
-void	rotate_all(t_stack *a, t_stack *b)
-{
-	if (!a || !b)
-		return ;
-	rotate_a(a, TRUE);
-	rotate_b(b, TRUE);
 }
 
 void	reverse_r_a(t_stack *a, t_bool rrr)
@@ -66,12 +58,4 @@ void	reverse_r_b(t_stack *b, t_bool rrr)
 	else
 		ft_putendl("rrb");
 	printstack(b, 'b');
-}
-
-void	reverse_r_all(t_stack *a, t_stack *b)
-{
-	if (!a || !b || a->size == 0 || b->size == 0)
-		return;
-	reverse_r_a(a, TRUE);
-	reverse_r_b(b, TRUE);
 }
