@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 20:48:22 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:57:51 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		reverse_r_b(t_stack *b, t_bool rrr);
 int			get_median(t_stack *stack);
 t_list_ps 	*get_median_item(t_stack *stack, int pivot_location);
 int			medianof3_pivot(t_stack *a);
-void		quick_sort(t_stack *a, t_stack *b, char from_name);
+void		quick_sort(t_stack *a, t_stack *b, char from_name, int *pivot_value);
 t_bool		sort_check(t_stack *a);
 t_bool		end_check(t_stack *stack, char name, void (*swap)(t_stack *, t_bool));
 void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),

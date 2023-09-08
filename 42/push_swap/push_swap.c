@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 20:54:34 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:41:05 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,15 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
+	int		pivot_value;
 
 	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
-	quick_sort(&a, &b, 'a');
+	pivot_value = (get_median_item(&a, get_median(&a))->value);	
+	quick_sort(&a, &b, 'a', &pivot_value);
+	quick_sort(&a, &b, 'a', &pivot_value);
+	// rotate_a(&a, FALSE);
+	// printstack(&a, 'a');
+	printstack(&b, 'b');
 	// medianof3_pivot(&a);
 	// push_b(&a, &b);
 	// printstack(&a, 'a');
