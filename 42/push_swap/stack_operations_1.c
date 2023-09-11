@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 21:00:40 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:40:02 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	push_a(t_stack *a, t_stack *b)
 	a->top_item = tmp;
 	a->size ++;
 	a->last_item = ft_lstlast_ps(a->top_item);
+	if (b->size == 0)
+		b->last_item = NULL;
 	ft_putendl("pa");
 	// printstack(a, 'a');
 }
@@ -77,6 +79,8 @@ void	push_b(t_stack *a, t_stack *b)
 	b->top_item = tmp;
 	b->size ++;
 	b->last_item = ft_lstlast_ps(b->top_item);
+	if (a->size == 0)
+		a->last_item = NULL;
 	ft_putendl("pb");
 	// printstack(b, 'b');
 }

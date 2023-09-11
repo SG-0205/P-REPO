@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/08 16:41:05 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:51:22 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,30 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-	int		pivot_value;
-
+	
 	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
-	pivot_value = (get_median_item(&a, get_median(&a))->value);	
-	quick_sort(&a, &b, 'a', &pivot_value);
-	quick_sort(&a, &b, 'a', &pivot_value);
+	// ft_printf("%d", end_check(&a, 'a', swap_a));
+	quick_sort_a(&a, &b, 'a');
+	// quick_sort_b(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
+
+	printstack(&a, 'a');
+	// printstack(&b, 'b');
 	// rotate_a(&a, FALSE);
+	// ft_printf("%d", sort_check(&a));
 	// printstack(&a, 'a');
-	printstack(&b, 'b');
+	// printstack(&b, 'b');
 	// medianof3_pivot(&a);
 	// push_b(&a, &b);
+	// push_b(&a, &b);
+	// push_b(&a, &b);
+	// push_b(&a, &b);
 	// printstack(&a, 'a');
+	// printstack(&b, 'b');
 	// push_b(&a, &b);
 	// push_b(&a, &b);
 	// push_a(&a, &b);

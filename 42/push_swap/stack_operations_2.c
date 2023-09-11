@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 19:55:09 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:17:39 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	rotate_b(t_stack *b, t_bool rr)
 		ft_putendl("rr");
 	else
 		ft_putendl("rb");
-	printstack(b, 'b');
+	// printstack(b, 'b');
 }
 
 void	reverse_r_a(t_stack *a, t_bool rrr)
@@ -42,7 +42,7 @@ void	reverse_r_a(t_stack *a, t_bool rrr)
 		ft_putendl("rrr");
 	else
 		ft_putendl("rra");
-	printstack(a, 'a');
+	// printstack(a, 'a');
 }
 
 void	reverse_r_b(t_stack *b, t_bool rrr)
@@ -57,5 +57,5 @@ void	reverse_r_b(t_stack *b, t_bool rrr)
 		ft_putendl("rrr");
 	else
 		ft_putendl("rrb");
-	printstack(b, 'b');
+	// printstack(b, 'b');
 }

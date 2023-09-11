@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:45:15 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 20:34:45 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:22:49 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void (*reverse_r)(t_stack *, t_bool))
 
 t_bool	end_check(t_stack *stack, char name, void (*swap)(t_stack *, t_bool))
 {
-	if (stack->size == 0)
+	if (stack->size == 0 && name == 'b')
 		return (TRUE);
 	if (stack->size == 3)
 	{
