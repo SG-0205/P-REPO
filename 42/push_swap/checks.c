@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:45:15 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/11 16:22:49 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:57:13 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@ t_bool	sort_check(t_stack *a)
 	while (tmp)
 	{
 		if (tmp->next && tmp->value > tmp->next->value)
+			return (FALSE);
+		tmp = tmp->next;
+	}
+	return (TRUE);
+}
+
+t_bool	rev_sort_check(t_stack *a)
+{
+	t_list_ps	*tmp;
+
+	if (!a || !a->top_item)
+		return (TRUE);
+	tmp = a->top_item;
+	while (tmp)
+	{
+		if (tmp->next && tmp->value < tmp->next->value)
 			return (FALSE);
 		tmp = tmp->next;
 	}
