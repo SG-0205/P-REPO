@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 22:26:31 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/11 22:00:41 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/11 22:02:38 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ static void	order_b(t_stack *b)
 			return ;
 		if (b->size == 3)
 			sort_three(b, swap_b, reverse_r_b);
-		else if (b->top_item->next
-		&& b->top_item->value < b->top_item->next->value)
-			swap_b(b, FALSE);
 		else if (b->last_item
 		&& b->top_item->value < b->last_item->value)
 			rotate_b(b, FALSE);
-		else if (b->last_item
-		&& b->top_item->value < b->last_item->value)
+		else if (b->top_item->next
+		&& b->top_item->value < b->top_item->next->value)
+			swap_b(b, FALSE);
 		else
 			break;
 	}
