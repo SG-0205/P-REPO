@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/11 21:50:10 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 09:44:44 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_bool		sort_check(t_stack *a);
 t_bool		rev_sort_check(t_stack *a);
 t_bool		check_pivot(t_stack *stack, int *pivot_value);
 t_bool		end_check(t_stack *stack, char name, void (*swap)(t_stack *, t_bool));
+void		sort_three_rev(t_stack *stack, void (*swap)(t_stack *, t_bool),
+void (*reverse_r)(t_stack *, t_bool));
 void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),
 void (*reverse_r)(t_stack *, t_bool));
 

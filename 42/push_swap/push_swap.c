@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/11 18:51:22 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 08:41:29 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
 	// ft_printf("%d", end_check(&a, 'a', swap_a));
 	quick_sort_a(&a, &b, 'a');
+	// quick_sort_a(&a, &b, 'a');
 	// quick_sort_b(&a, &b, 'a');
 	// quick_sort_a(&a, &b, 'a');
 	// quick_sort_a(&a, &b, 'a');
