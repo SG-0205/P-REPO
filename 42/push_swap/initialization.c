@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 10:51:05 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:33:36 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	stack_init(t_stack *a, t_stack *b, int argc, char **argv)
 	b->last_item = NULL;
 	b->top_item = NULL;
 	b->size = 0;
-	printstack(a, 'a');
 }
 
 void	doublon_check(int argc, char **args)

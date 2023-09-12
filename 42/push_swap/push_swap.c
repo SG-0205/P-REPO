@@ -6,29 +6,11 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 08:41:29 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:09:18 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	printstack(t_stack *stack, char name)
-{
-	t_list_ps	*next;
-	
-	ft_printf("Stack %c\n", name);
-	next = stack->top_item;
-	while (next)
-	{
-		ft_printf("%d\n", next->value);
-		next = next->next;
-	}
-	ft_printf("Taille de la stack : %d\n", stack->size);
-	if (stack->top_item)
-		ft_printf("1ere valeur : %d\n", stack->top_item->value);
-	if (stack->last_item)
-		ft_printf("Derniere valeur : %d\n\n", stack->last_item->value);
-}
 
 int	main(int argc, char **argv)
 {
@@ -36,8 +18,13 @@ int	main(int argc, char **argv)
 	t_stack	b;
 	
 	args_checker(argc, argv), stack_init(&a, &b, argc, argv);
-	// ft_printf("%d", end_check(&a, 'a', swap_a));
-	quick_sort_a(&a, &b, 'a');
+	// ft_("%d", end_check(&a, 'a', swap_a));
+	quick_sort_a(&a, &b);
+	// order_b(&a);
+	if (sort_check(&a) == TRUE && b.size == 0)
+		ft_printf("\nOK\n");
+	else
+		ft_printf("\nKO\n");
 	// quick_sort_a(&a, &b, 'a');
 	// quick_sort_b(&a, &b, 'a');
 	// quick_sort_a(&a, &b, 'a');
@@ -46,10 +33,10 @@ int	main(int argc, char **argv)
 	// quick_sort_a(&a, &b, 'a');
 	// quick_sort_a(&a, &b, 'a');
 
-	printstack(&a, 'a');
+	// printstack(&a, 'a');
 	// printstack(&b, 'b');
 	// rotate_a(&a, FALSE);
-	// ft_printf("%d", sort_check(&a));
+	// ft_("%d", sort_check(&a));
 	// printstack(&a, 'a');
 	// printstack(&b, 'b');
 	// medianof3_pivot(&a);

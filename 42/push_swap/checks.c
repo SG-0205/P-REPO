@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:45:15 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 09:43:39 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:58:38 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ t_bool	sort_check(t_stack *a)
 	t_list_ps	*tmp;
 
 	tmp = a->top_item;
+	while (tmp)
+	{
+		if (tmp->next && tmp->value > tmp->next->value)
+			return (FALSE);
+		tmp = tmp->next;
+	}
+	return (TRUE);
+}
+
+t_bool	check_rest(t_list_ps *start)
+{
+	t_list_ps	*tmp;
+
+	tmp = start;
 	while (tmp)
 	{
 		if (tmp->next && tmp->value > tmp->next->value)

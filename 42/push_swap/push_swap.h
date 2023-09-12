@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 09:44:44 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:21:15 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		reverse_r_b(t_stack *b, t_bool rrr);
 int			get_median(t_stack *stack);
 t_list_ps 	*get_median_item(t_stack *stack, int pivot_location);
 int			medianof3_pivot(t_stack *a);
-void		quick_sort_a(t_stack *a, t_stack *b, char from_name);
+void		quick_sort_a(t_stack *a, t_stack *b);
 void		quick_sort_b(t_stack *a, t_stack *b, char from_name);
 t_bool		sort_check(t_stack *a);
 t_bool		rev_sort_check(t_stack *a);
@@ -57,7 +57,9 @@ void		sort_three_rev(t_stack *stack, void (*swap)(t_stack *, t_bool),
 void (*reverse_r)(t_stack *, t_bool));
 void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),
 void (*reverse_r)(t_stack *, t_bool));
-
+void		order_b(t_stack *b);
+void		merge(t_stack *a, t_stack *b);
+t_bool		check_rest(t_list_ps *start);
 
 t_list_ps	*ft_lstnew_ps(int value);
 void		ft_lstdelone_ps(t_list_ps *lst);

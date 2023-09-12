@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/06 21:52:48 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:33:02 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_list_ps	*ft_lstbflast(t_list_ps *top)
 	tmp = top;
 	while (tmp->next->next)
 		tmp = tmp->next;
-	ft_printf("Avant dernier : %d\n", tmp->value);
 	return (tmp);
 }
 

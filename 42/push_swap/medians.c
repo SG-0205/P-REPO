@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 20:47:11 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 20:47:26 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:16:12 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_list_ps *get_median_item(t_stack *stack, int pivot_location)
 	tmp = stack->top_item;
 	while (++i < pivot_location)
 		tmp = tmp->next;
-	ft_printf("\nValeur médiane : %d", tmp->value);
 	return (tmp);
 }
 
@@ -32,9 +31,8 @@ int	get_median(t_stack *stack)
 
 	place = -1;
 	tmp = stack->top_item;
-	while (++place < (stack->size / 2))
+	while (++place < (stack->size / 2) && stack->size > 3)
 		tmp = tmp->next;
-	ft_printf("Médiane : %d\n", place);
 	return (place);
 }
 
