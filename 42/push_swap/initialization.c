@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 16:33:36 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:42:13 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	doublon_check(int argc, char **args)
 	}
 }
 
+// int	t_isdigit2(char c)
+// {
+	
+// }
+
 void	args_checker(int argc, char **args)
 {
 	int	i;
@@ -75,11 +80,11 @@ void	args_checker(int argc, char **args)
 	{
 		j = 0;
 		if (ft_atoi(args[i]) > __INT_MAX__
-			|| ft_atoi(args[i]) < (__INT_MAX__ * -1 + 1))
+			|| ft_atoi(args[i]) < (__INT_MAX__ * -1) + 1)
 				error();
 		while (args[i][j])
 		{
-			if (ft_isdigit(args[i][j]) == 0)
+			if (ft_isdigit(args[i][j]) == 0 && args[i][j] != '-')
 				error();
 			j ++;
 		}

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 18:21:15 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:30:12 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void (*reverse_r)(t_stack *, t_bool));
 void		order_b(t_stack *b);
 void		merge(t_stack *a, t_stack *b);
 t_bool		check_rest(t_list_ps *start);
+void		neg_sort(t_stack *a, t_stack *b);
+int			get_maxlen(t_stack *stack);
+int			get_int(int value, int order);
+int			power10(int power);
+void		radix(t_stack *stack, t_stack *box, int scope);
 
 t_list_ps	*ft_lstnew_ps(int value);
 void		ft_lstdelone_ps(t_list_ps *lst);
