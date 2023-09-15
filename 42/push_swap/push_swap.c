@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/14 19:30:30 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:28:52 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	free_all(t_stack *a, t_stack *b)
 	if (b->top_item)
 		ft_lstclear_ps(&b->top_item);
 	printstack(a, 'a'), printstack(b, 'b');
-	free(a), free(b);
+	free(a);
+	free(b);
 	return (TRUE);
 }
 
@@ -109,8 +110,11 @@ int	main(int argc, char **argv)
 	if (initial_parse(a, b) == TRUE)
 		return (0);
 	// quick_sort_a(a, b);
+	int scope = 10, box = 2;
 	// neg_sort(a, b);
-	radix(a, b, 10);
+	radix(a, b, &scope);
+	printstack(a, 'a'), printstack(b, 'b');
+	ft_printf("\nscope_check : %d\n\n", scope_check(a, &scope, &box));
 	printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");

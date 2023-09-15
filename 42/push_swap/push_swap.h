@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/14 19:30:12 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:25:22 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void		neg_sort(t_stack *a, t_stack *b);
 int			get_maxlen(t_stack *stack);
 int			get_int(int value, int order);
 int			power10(int power);
-void		radix(t_stack *stack, t_stack *box, int scope);
+t_bool		scope_validation(int *nb, int *scope, int *box);
+void		ft_intlen2(long int n, int *len);
+void		radix(t_stack *stack, t_stack *stack2, int *scope);
+t_bool		scope_check(t_stack *stack, int *scope, int *box);
 
 t_list_ps	*ft_lstnew_ps(int value);
 void		ft_lstdelone_ps(t_list_ps *lst);
