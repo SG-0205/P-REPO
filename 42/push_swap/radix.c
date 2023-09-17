@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/15 17:26:59 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:35:34 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_bool	scope_check(t_stack *stack, int *scope, int *box)
 		return (ERROR);
 	if (stack->top_item)
 		tmp = stack->top_item;
+	ft_printf("SCOPE_CHECK\n");
 	while (tmp)
 	{
 		if (tmp->value < 0)
@@ -150,16 +151,16 @@ int	dist_from_top(t_stack *stack, int *scope, int *box)
 	t_list_ps	*tmp;
 	int			distance;
 
-	distance = 0;
+	distance = -1;
 	if (!stack)
 		return (0);
 	if (stack->top_item)
 		tmp = stack->top_item;
-	while (tmp)
+	while (tmp && distance++ < stack->size)
 	{
 		if (scope_validation(&tmp->value, scope, box) == TRUE)
 			return (distance);
-		distance ++;
+		// distance ++;
 	}
 	return (0);
 }
@@ -176,7 +177,7 @@ int	create_radix_env(t_stack **group, t_stack *a, t_stack *b, int *scope)
 	return (scope_len);
 }
 
-void	radix(t_stack *stack, t_stack *stack2, int *scope)
+void	radix_sort(t_stack *stack, t_stack *stack2, int *scope)
 {
 	int 	box_i;
 	int		scope_len;
@@ -184,8 +185,6 @@ void	radix(t_stack *stack, t_stack *stack2, int *scope)
 
 	stack_group = NULL;
 	scope_len = create_radix_env(stack_group, stack, stack2, scope);
-	if (!stack_group)
-		return ;
 	box_i = 0;
 	while (stack && stack->top_item && box_i < 10 
 	&& stack->last_item && scope_len <= get_maxlen(stack))
@@ -198,15 +197,28 @@ void	radix(t_stack *stack, t_stack *stack2, int *scope)
 		else if (stack->top_item->next &&
 		scope_validation(&stack->top_item->next->value, scope, &box_i)== TRUE)
 			rotate_a(stack, FALSE);
-		else if (scope_validation(&stack->last_item->value, scope, &box_i)
-		== TRUE)
+		else if (stack->last_item
+		&& scope_validation(&stack->last_item->value, scope, &box_i) == TRUE)
 			reverse_r_a(stack, FALSE);
-		else
-			while (dist_from_top(stack, scope, &box_i) > 0)
-				if (dist_from_top(stack, scope, &box_i) < (stack->size / 2))
-					rotate_a(stack, FALSE);
-				else
-					reverse_r_a(stack, FALSE);
+		else if (dist_from_top(stack, scope, &box_i) <= (stack->size / 2))
+			rotate_a(stack, FALSE);
+		else if (dist_from_top(stack, scope, &box_i) > (stack->size / 2))
+			reverse_r_a(stack, FALSE);
+		ft_printf("\nBOX_I : %d\n", box_i);
 	}
 	free(stack_group);
+}
+
+void	radix(t_stack *a, t_stack *b, int *scope)
+{
+	int	scope_len;
+
+	scope_len = 0;
+	ft_intlen2(*scope, &scope_len);
+	if (!a || !b)
+		return ;
+	radix_sort(a, b, scope);
+	while (b->size > 0)
+		push_a(a, b);
+	printstack(a, 'a'), printstack(b, 'b');
 }
