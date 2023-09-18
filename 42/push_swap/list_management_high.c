@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 16:33:02 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:12:07 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_list_ps	*ft_lstbflast(t_list_ps *top)
 	if (!top)
 		return (NULL);
 	tmp = top;
+	if (!tmp->next)
+		return (tmp);
 	while (tmp->next->next)
 		tmp = tmp->next;
 	return (tmp);

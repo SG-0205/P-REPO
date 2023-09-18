@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/17 19:40:12 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:45:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	printstack(t_stack *stack, char name)
 	if (stack->top_item)
 		ft_printf("1st : %d\n", stack->top_item->value);
 	if (stack->last_item)
-		ft_printf("Lst : %d\n\n", stack->last_item->value);	
-	ft_printf("SIZE : %d", stack->size);
+		ft_printf("Lst : %d\n", stack->last_item->value);	
+	ft_printf("SIZE : %d\n", stack->size);
 }
 
 int	free_all(t_stack *a, t_stack *b)
@@ -111,20 +111,28 @@ int	main(int argc, char **argv)
 	if (initial_parse(a, b) == TRUE)
 		return (0);
 	// quick_sort_a(a, b);
-	ft_printf("last_ptr :\t%p\n", a->last_item->next);
-	int scope = 1, box = 0;
-	// neg_sort(a, b);
-	radix(a, b, &scope), scope = 10;
-	radix(a, b, &scope), scope = 100;
-	radix(a, b, &scope), scope = 1000;
-	radix(a, b, &scope);
-	printstack(a, 'a'), printstack(b, 'b');
-	ft_printf("\nscope_check : %d\n\n", scope_check(a, &scope, &box));
-	printstack(a, 'a'), printstack(b, 'b');
+	// ft_printf("last_ptr :\t%p\n", a->last_item->next);
+	int scope = 1, scope_len = 0, max_len = 0;
+	max_len = get_maxlen(a);
+	while(scope_len <= max_len)
+	{
+		// ft_printf("MAXLEN: %d\nSCOPELEN: %d\n", max_len, scope_len);
+		ft_intlen2(scope, &scope_len);
+		radix(a, b, &scope);
+		scope *= 10;
+	}
+	// (void)scope_len, (void)max_len;
+	// radix(a, b, &scope), scope = 10;
+	// radix(a, b, &scope), scope = 100;
+	// radix(a, b, &scope);
+	// printstack(a, 'a'), printstack(b, 'b');
+	// ft_printf("\nscope_check : %d\n\n", scope_check(a, &scope, &box));
+	// printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");
 	else
 		ft_printf("\nKO\n");
+	printstack(a, 'a');
 	free_all(a, b);
 	// quick_sort_a(a, b, 'a');
 	// quick_sort_b(a, b, 'a');

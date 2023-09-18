@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/11 16:17:39 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:01:25 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	reverse_r_a(t_stack *a, t_bool rrr)
 {
 	if (!a || a->size == 0)
 		return;
+	if (a->size == 2)
+		swap_a(a, FALSE);
 	(ft_lstbflast(a->top_item))->next = NULL;
 	ft_lstadd_front_ps(&a->top_item, a->last_item);
 	a->top_item = a->last_item;
