@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/18 20:51:57 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:38:54 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,14 @@ t_bool	scope_validation(int *nb, int *scope, int *box)
 	ft_intlen2(*nb, &nb_len);
 	ft_intlen2(*scope, &scope_len);
 	// ft_printf("\nnb_len : %d\tscope_len : %d\n", nb_len, scope_len);
-	if ((scope_len == 1) && (*nb % 10 == *box))
-		return (TRUE);
-	else if (scope_len > 1 && nb_len == scope_len && (*nb / power10(scope_len - 1) == *box))
-		return (TRUE);
-	else if (scope_len > 1 && (nb_len > scope_len)
-	&& ((*nb / power10(scope_len - 1) % 10)) == *box)
+	if ((*scope == 1) && (*nb % 10 == *box))
 		return (TRUE);
 	else if (nb_len < scope_len && *box == 0)
+		return (TRUE);
+	else if (scope_len > 1 && nb_len == scope_len && (*nb / *scope == *box))
+		return (TRUE);
+	else if (scope_len > 1 && nb_len != scope_len && nb_len > 1
+	&& (*nb / *scope) % 10 == *box)
 		return (TRUE);
 	else
 		return (FALSE);		
@@ -128,8 +128,6 @@ t_bool	scope_check(t_stack *stack, int *scope, int *box)
 	t_list_ps	*tmp;
 	int			val_tmp;
 
-	if (!stack)
-		return (ERROR);
 	if (stack->top_item)
 		tmp = stack->top_item;
 	// ft_printf("SCOPE_CHECK\n");
@@ -158,8 +156,11 @@ int	dist_from_top(t_stack *stack, int *scope, int *box)
 		return (0);
 	if (stack->top_item)
 		tmp = stack->top_item;
-	while (scope_validation(&tmp->value, scope, box) == FALSE)
+	while (tmp)
 	{
+		// ft_printf("DIST: %d\tSIZE: %d\n", distance, stack->size);
+		if (scope_validation(&tmp->value, scope, box) == TRUE)
+			return (distance);
 		distance ++;
 		tmp = tmp->next;
 	}
@@ -183,26 +184,25 @@ void	radix_sort(t_stack *stack, t_stack *stack2, int *scope)
 	int 	box_i;
 	int		scope_len;
 	t_stack	**stack_group;
+	int		max_len;
 
 	stack_group = NULL;
 	scope_len = create_radix_env(stack_group, stack, stack2, scope);
 	box_i = 0;
-	while (box_i < 10 && scope_len <= get_maxlen(stack))
+	max_len = get_maxlen(stack);
+	while (scope_len <= max_len && stack->top_item)
 	{
-		// ft_printf("\nBOX_I : %d\n", box_i);
-		if (box_i == 10)
+		// ft_printf("\nBOX_I : %d\nSCOPE: %d\n", box_i, *scope);
+		// printstack(stack, 'a');
+		if (box_i > 9)
 			break;
-		if (scope_check(stack, scope, &box_i) == FALSE)
+		else if (scope_check(stack, scope, &box_i) == FALSE)
 			box_i ++;
 		else if (scope_validation(&stack->top_item->value, scope, &box_i)
 		== TRUE)
 			push_b(stack, stack2);
-		// else if (stack->size < 4)
-		// 	swap_a(stack, FALSE);
-		else if (dist_from_top(stack, scope, &box_i) <= (stack->size / 2))
+		else
 			rotate_a(stack, FALSE);
-		else if (dist_from_top(stack, scope, &box_i) > (stack->size / 2))
-			reverse_r_a(stack, FALSE);
 	}
 	free(stack_group);
 }
@@ -225,9 +225,59 @@ void	final_sort(t_stack *a, t_stack *b)
 	}
 }
 
+int	error_index(t_stack *stack)
+{
+	t_list_ps	*tmp;
+	t_list_ps	*prev;
+	int			index;
+	
+	index = 0;
+	if (stack->top_item)
+		prev = stack->top_item;
+	if (stack->top_item->next)
+		tmp = stack->top_item->next;
+	while (tmp->next->next)
+	{
+		if (tmp->value > tmp->next->value
+		&& tmp->value > prev->value)
+			return (index);
+		prev = tmp;
+		tmp = tmp->next;
+		index ++;
+	}
+	return (0);
+}
+
+// void	last_push(t_stack *a, t_stack *b)
+// {
+// 	int	chunk_size;
+
+// 	chunk_size = error_index(b);
+// 	if (a->size == 0)
+// 		push_a(a, b);
+// 	if (a->top_item->value > b->top_item->value)
+// 		(push_a(a, b), chunk_size --);
+// 	if (a->top_item->value > a->last_item->value)
+// 		rotate_a(a, FALSE);
+// 	else if (b->top_item->value < a->last_item->value
+// 	&& b->top_item->value > a->top_item->value)
+// 		reverse_r_a(a, FALSE), push_a(a, b), rotate_a(a, FALSE), rotate_a(a, FALSE);
+// 	else if (a->top_item->next
+// 	&& a->top_item->value > a->top_item->next->value)
+// 		swap_a(a, FALSE);
+// 	// else if (sort_check(a) == FALSE)
+// 	// 	while (sort_check(a) == FALSE)
+// 	// 		rotate_a(a, FALSE);
+// 	// else if (a->top_item->value < b->top_item->value)
+// 	// 	push_a(a, b);
+// 	if (b->size > 0)
+// 		last_push(a, b);
+// }
+
 void	radix(t_stack *a, t_stack *b, int *scope)
 {
 	int	scope_len;
+	int	max_len;
 
 	scope_len = 0;
 	ft_intlen2(*scope, &scope_len);
@@ -235,7 +285,12 @@ void	radix(t_stack *a, t_stack *b, int *scope)
 		return ;
 	radix_sort(a, b, scope);
 	// printstack(a, 'a'), printstack(b, 'b');
-	while (b->top_item)
-		push_a(a, b);
+	max_len = get_maxlen(b);
+	if (scope_len <= max_len)
+		while (b->top_item)
+			push_a(a, b);
+	// else if (scope_len == max_len)
+	// 	last_push(a, b);
+	// quick_sort_a(a, b);
 	// printstack(a, 'a'), printstack(b, 'b');
 }
