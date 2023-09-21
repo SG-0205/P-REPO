@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/19 16:38:54 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 00:45:22 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,21 +182,19 @@ int	create_radix_env(t_stack **group, t_stack *a, t_stack *b, int *scope)
 void	radix_sort(t_stack *stack, t_stack *stack2, int *scope)
 {
 	int 	box_i;
-	int		scope_len;
+	// int		scope_len;
 	t_stack	**stack_group;
-	int		max_len;
+	// int		max_len;
 
 	stack_group = NULL;
-	scope_len = create_radix_env(stack_group, stack, stack2, scope);
+	// scope_len = create_radix_env(stack_group, stack, stack2, scope);
 	box_i = 0;
-	max_len = get_maxlen(stack);
-	while (scope_len <= max_len && stack->top_item)
+	// max_len = get_maxlen(stack);
+	while (stack->top_item && box_i < 10)
 	{
 		// ft_printf("\nBOX_I : %d\nSCOPE: %d\n", box_i, *scope);
 		// printstack(stack, 'a');
-		if (box_i > 9)
-			break;
-		else if (scope_check(stack, scope, &box_i) == FALSE)
+		if (scope_check(stack, scope, &box_i) == FALSE)
 			box_i ++;
 		else if (scope_validation(&stack->top_item->value, scope, &box_i)
 		== TRUE)
@@ -286,7 +284,7 @@ void	radix(t_stack *a, t_stack *b, int *scope)
 	radix_sort(a, b, scope);
 	// printstack(a, 'a'), printstack(b, 'b');
 	max_len = get_maxlen(b);
-	if (scope_len <= max_len)
+	if (scope_len <= max_len +1)
 		while (b->top_item)
 			push_a(a, b);
 	// else if (scope_len == max_len)

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/05 17:56:05 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:41:34 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_list_ps	*ft_lstlast_ps(t_list_ps *lst)
 
 	if (!lst)
 		return (NULL);
-	if (!(lst->next))
+	if (!lst->next)
 		return (lst);
 	tmp = lst->next;
-	while (tmp->next != NULL)
+	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
 }

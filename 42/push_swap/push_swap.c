@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/19 12:35:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 00:49:15 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,24 @@ t_bool	initial_parse(t_stack *a, t_stack *b)
 	return(FALSE);
 }
 
+t_bool	is_max(t_stack *stack)
+{
+	t_list_ps	*tmp;
+	int			top_val;
+
+	if (!stack->top_item)
+		return (FALSE);
+	tmp = stack->top_item;
+	top_val = tmp->value;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		if (tmp->value > top_val)
+			return (FALSE);
+	}
+	return (TRUE);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -114,13 +132,26 @@ int	main(int argc, char **argv)
 	// ft_printf("last_ptr :\t%p\n", a->last_item->next);
 	int scope = 1, scope_len = 0, max_len = 0;
 	max_len = get_maxlen(a);
-	while(scope_len <= max_len)
+	while(scope_len <= max_len + 1)
 	{
 		// ft_printf("MAXLEN: %d\nSCOPELEN: %d\n", max_len, scope_len);
 		ft_intlen2(scope, &scope_len);
 		radix(a, b, &scope);
 		scope *= 10;
 	}
+	// while (sort_check(a) == FALSE)
+	// {
+	// 	if (a->top_item < a->top_item->next)
+	// 		push_b(a, FALSE);
+	// 	else if (b->top_item
+	// 	&& b->top_item->value < a->top_item->value && b->top_item->value > a->last_item->value)
+	// 		push_a(a, b);
+	// 	else if (a->top_item->next
+	// 	&& a->top_item->value > a->top_item->next->value)
+	// 		swap_a(a, FALSE);
+	// 	else
+	// 		break;
+	// }
 	// (void)scope_len, (void)max_len;
 	// radix(a, b, &scope), scope = 10;
 	// radix(a, b, &scope), scope = 100;
