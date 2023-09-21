@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 00:45:22 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:57:39 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_bool	scope_validation(int *nb, int *scope, int *box)
 		return (FALSE);		
 }
 
-t_bool	scope_check(t_stack *stack, int *scope, int *box)
+t_bool	scope_check(t_stack *stack, int *mask)
 {
 	t_list_ps	*tmp;
 	int			val_tmp;
@@ -139,7 +139,7 @@ t_bool	scope_check(t_stack *stack, int *scope, int *box)
 		else
 			val_tmp = tmp->value;
 		// ft_printf("VALIDATING\n");
-		if (scope_validation(&val_tmp, scope, box) == TRUE)
+		if ((val_tmp & *mask) == 0)
 			return (TRUE);
 		tmp = tmp->next;
 	}
@@ -179,30 +179,25 @@ int	create_radix_env(t_stack **group, t_stack *a, t_stack *b, int *scope)
 	return (scope_len);
 }
 
-void	radix_sort(t_stack *stack, t_stack *stack2, int *scope)
+void	radix_sort(t_stack *stack, t_stack *stack2, int *mask)
 {
-	int 	box_i;
-	// int		scope_len;
-	t_stack	**stack_group;
-	// int		max_len;
-
-	stack_group = NULL;
-	// scope_len = create_radix_env(stack_group, stack, stack2, scope);
-	box_i = 0;
-	// max_len = get_maxlen(stack);
-	while (stack->top_item && box_i < 10)
+	int	b_mask;
+	
+	b_mask = 0;
+	while (stack->top_item)
 	{
-		// ft_printf("\nBOX_I : %d\nSCOPE: %d\n", box_i, *scope);
-		// printstack(stack, 'a');
-		if (scope_check(stack, scope, &box_i) == FALSE)
-			box_i ++;
-		else if (scope_validation(&stack->top_item->value, scope, &box_i)
-		== TRUE)
-			push_b(stack, stack2);
+		if (*mask >= 0 && *mask < __INT_MAX__)
+			b_mask = 1 << *mask;
 		else
-			rotate_a(stack, FALSE);
+			b_mask = 0;
+		ft_printf("MASK: %d\n", b_mask);
+		if (scope_check(stack, &b_mask) == FALSE)
+			break;
+		if ((stack->top_item->value & b_mask) == 0)
+			ft_printf("COMPARAISON: %d -> %d\n", stack->top_item->value, (stack->top_item->value & *mask)), push_b(stack, stack2);
+		else
+			ft_printf("COMPARAISON: %d -> %d\n", stack->top_item->value, (stack->top_item->value & *mask)), rotate_a(stack, FALSE);
 	}
-	free(stack_group);
 }
 
 void	final_sort(t_stack *a, t_stack *b)
@@ -275,20 +270,19 @@ int	error_index(t_stack *stack)
 void	radix(t_stack *a, t_stack *b, int *scope)
 {
 	int	scope_len;
-	int	max_len;
+	// int	max_len;
+	int	mask;
 
 	scope_len = 0;
+	if (*scope >= 4)
+		mask = 0xF << (*scope - 4);
+	else
+		mask = 0xF;
+	ft_printf("MASK: %X\n", mask);
 	ft_intlen2(*scope, &scope_len);
 	if (!a || !b)
 		return ;
 	radix_sort(a, b, scope);
-	// printstack(a, 'a'), printstack(b, 'b');
-	max_len = get_maxlen(b);
-	if (scope_len <= max_len +1)
-		while (b->top_item)
-			push_a(a, b);
-	// else if (scope_len == max_len)
-	// 	last_push(a, b);
-	// quick_sort_a(a, b);
-	// printstack(a, 'a'), printstack(b, 'b');
+	while (b->top_item)
+		push_a(a, b);
 }

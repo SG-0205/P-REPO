@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 00:49:15 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:59:48 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,75 +130,21 @@ int	main(int argc, char **argv)
 		return (0);
 	// quick_sort_a(a, b);
 	// ft_printf("last_ptr :\t%p\n", a->last_item->next);
-	int scope = 1, scope_len = 0, max_len = 0;
-	max_len = get_maxlen(a);
-	while(scope_len <= max_len + 1)
+	int scope = 0, scope_len = 0, i = 0;
+	// max_len = get_maxlen(a);
+	while (i < 15)
 	{
 		// ft_printf("MAXLEN: %d\nSCOPELEN: %d\n", max_len, scope_len);
 		ft_intlen2(scope, &scope_len);
 		radix(a, b, &scope);
-		scope *= 10;
+		scope ++;
+		i ++;
 	}
-	// while (sort_check(a) == FALSE)
-	// {
-	// 	if (a->top_item < a->top_item->next)
-	// 		push_b(a, FALSE);
-	// 	else if (b->top_item
-	// 	&& b->top_item->value < a->top_item->value && b->top_item->value > a->last_item->value)
-	// 		push_a(a, b);
-	// 	else if (a->top_item->next
-	// 	&& a->top_item->value > a->top_item->next->value)
-	// 		swap_a(a, FALSE);
-	// 	else
-	// 		break;
-	// }
-	// (void)scope_len, (void)max_len;
-	// radix(a, b, &scope), scope = 10;
-	// radix(a, b, &scope), scope = 100;
-	// radix(a, b, &scope);
-	// printstack(a, 'a'), printstack(b, 'b');
-	// ft_printf("\nscope_check : %d\n\n", scope_check(a, &scope, &box));
-	// printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");
 	else
 		ft_printf("\nKO\n");
 	printstack(a, 'a');
 	free_all(a, b);
-	// quick_sort_a(a, b, 'a');
-	// quick_sort_b(a, b, 'a');
-	// quick_sort_a(a, b, 'a');
-	// quick_sort_a(a, b, 'a');
-	// quick_sort_a(a, b, 'a');
-	// quick_sort_a(a, b, 'a');
-	// quick_sort_a(a, b, 'a');
-
-	// printstack(a, 'a');
-	// printstack(b, 'b');
-	// rotate_a(a, FALSE);
-	// ft_("%d", sort_check(a));
-	// printstack(a, 'a');
-	// printstack(b, 'b');
-	// medianof3_pivot(a);
-	// push_b(a, b);
-	// push_b(a, b);
-	// push_b(a, b);
-	// push_b(a, b);
-	// printstack(a, 'a');
-	// printstack(b, 'b');
-	// push_b(a, b);
-	// push_b(a, b);
-	// push_a(a, b);
-	// rotate_a(a, FALSE);
-	// rotate_a(a, FALSE);
-	// rotate_a(a, FALSE);
-	// reverse_r_a(a, FALSE);
-	// reverse_r_a(a, FALSE);
-	// reverse_r_a(a, FALSE);
-	// printstack(a, 'a');
-	// ft_lstbflast(a.top_item);
-	// rotate_b(b, FALSE);
-	// swap(a, TRUE);
-	// swap(a, TRUE);
 	return (0);
 }
