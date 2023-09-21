@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 18:57:39 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:59:46 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,27 +179,6 @@ int	create_radix_env(t_stack **group, t_stack *a, t_stack *b, int *scope)
 	return (scope_len);
 }
 
-void	radix_sort(t_stack *stack, t_stack *stack2, int *mask)
-{
-	int	b_mask;
-	
-	b_mask = 0;
-	while (stack->top_item)
-	{
-		if (*mask >= 0 && *mask < __INT_MAX__)
-			b_mask = 1 << *mask;
-		else
-			b_mask = 0;
-		ft_printf("MASK: %d\n", b_mask);
-		if (scope_check(stack, &b_mask) == FALSE)
-			break;
-		if ((stack->top_item->value & b_mask) == 0)
-			ft_printf("COMPARAISON: %d -> %d\n", stack->top_item->value, (stack->top_item->value & *mask)), push_b(stack, stack2);
-		else
-			ft_printf("COMPARAISON: %d -> %d\n", stack->top_item->value, (stack->top_item->value & *mask)), rotate_a(stack, FALSE);
-	}
-}
-
 void	final_sort(t_stack *a, t_stack *b)
 {
 	while (b->top_item)
@@ -241,48 +220,54 @@ int	error_index(t_stack *stack)
 	return (0);
 }
 
-// void	last_push(t_stack *a, t_stack *b)
-// {
-// 	int	chunk_size;
-
-// 	chunk_size = error_index(b);
-// 	if (a->size == 0)
-// 		push_a(a, b);
-// 	if (a->top_item->value > b->top_item->value)
-// 		(push_a(a, b), chunk_size --);
-// 	if (a->top_item->value > a->last_item->value)
-// 		rotate_a(a, FALSE);
-// 	else if (b->top_item->value < a->last_item->value
-// 	&& b->top_item->value > a->top_item->value)
-// 		reverse_r_a(a, FALSE), push_a(a, b), rotate_a(a, FALSE), rotate_a(a, FALSE);
-// 	else if (a->top_item->next
-// 	&& a->top_item->value > a->top_item->next->value)
-// 		swap_a(a, FALSE);
-// 	// else if (sort_check(a) == FALSE)
-// 	// 	while (sort_check(a) == FALSE)
-// 	// 		rotate_a(a, FALSE);
-// 	// else if (a->top_item->value < b->top_item->value)
-// 	// 	push_a(a, b);
-// 	if (b->size > 0)
-// 		last_push(a, b);
-// }
-
-void	radix(t_stack *a, t_stack *b, int *scope)
+int	get_maxval(t_stack *stack)
 {
-	int	scope_len;
-	// int	max_len;
-	int	mask;
+	t_list_ps	*tmp;
+	int			ret;
 
-	scope_len = 0;
-	if (*scope >= 4)
-		mask = 0xF << (*scope - 4);
-	else
-		mask = 0xF;
-	ft_printf("MASK: %X\n", mask);
-	ft_intlen2(*scope, &scope_len);
-	if (!a || !b)
-		return ;
-	radix_sort(a, b, scope);
-	while (b->top_item)
-		push_a(a, b);
+	ret = 0;
+	if (stack->top_item)
+		tmp = stack->top_item;
+	while (tmp)
+	{
+		if (ret < tmp->value)
+			ret = tmp->value;
+		tmp = tmp->next;
+	}
+	return (ret);
+}
+
+void	radix(t_stack *a, t_stack *b)
+{
+	int	b_mask;
+	int	i;
+	int	max_size;
+	int	stack_size;
+	int j;
+	
+	max_size = get_maxval(a);
+	stack_size = a->size;
+	b_mask = 0;
+	i = -1;
+	while (++i <= max_size)
+	{
+		j = 0;
+		while (j ++ < stack_size)
+		{
+			if (i >= 0 && i < __INT_MAX__)
+				b_mask = 1 << i;
+			else
+				b_mask = 0;
+			if ((a->top_item->value & b_mask) == 0)
+				push_b(a, b);
+			else
+				rotate_a(a, FALSE);
+			if (sort_check(a) == TRUE && rev_sort_check(b) == TRUE)
+				break;
+		}
+		while (b->top_item)
+			push_a(a, b);
+		if (sort_check(a) == TRUE)
+			break;
+	}
 }

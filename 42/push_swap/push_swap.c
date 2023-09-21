@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 18:59:48 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:26:29 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,23 +128,12 @@ int	main(int argc, char **argv)
 	args_checker(argc, argv), stack_init(a, b, argc, argv);
 	if (initial_parse(a, b) == TRUE)
 		return (0);
-	// quick_sort_a(a, b);
-	// ft_printf("last_ptr :\t%p\n", a->last_item->next);
-	int scope = 0, scope_len = 0, i = 0;
-	// max_len = get_maxlen(a);
-	while (i < 15)
-	{
-		// ft_printf("MAXLEN: %d\nSCOPELEN: %d\n", max_len, scope_len);
-		ft_intlen2(scope, &scope_len);
-		radix(a, b, &scope);
-		scope ++;
-		i ++;
-	}
+	radix(a, b);
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");
 	else
 		ft_printf("\nKO\n");
-	printstack(a, 'a');
+	// printstack(a, 'a');
 	free_all(a, b);
 	return (0);
 }
