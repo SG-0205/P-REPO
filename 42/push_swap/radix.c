@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/22 19:46:40 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/22 22:36:07 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,14 +257,18 @@ int	get_maxval(t_stack *stack)
 {
 	t_list_ps	*tmp;
 	int			ret;
+	int			tmp_val;
 
 	ret = 0;
 	if (stack->top_item)
 		tmp = stack->top_item;
 	while (tmp)
 	{
-		if (ret < tmp->value)
-			ret = tmp->value;
+		tmp_val = tmp->value;
+		if (tmp_val < 0)
+			tmp_val = -tmp_val;
+		if (ret < tmp_val)
+			ret = tmp_val;
 		tmp = tmp->next;
 	}
 	return (ret);
@@ -276,6 +280,7 @@ void	push_pos(int *i, int *b_mask, t_stack *a, t_stack *b)
 		*b_mask = 1 << *i;
 	else
 		*b_mask = 0;
+	ft_printf("Comparaison : %d & %d -> %d\n", a->top_item->value, *b_mask, (a->top_item->value & *b_mask));
 	if ((a->top_item->value & *b_mask) == 0)
 		push_b(a, b);
 	else
@@ -290,7 +295,11 @@ void	push_neg(int *i, int *b_mask, t_stack *a, t_stack *b)
 		*b_mask = 1 << *i;
 	else
 		*b_mask = 0;
-	tmp_val = - a->top_item->value;
+	if (a->top_item->value < 0)
+		tmp_val = (a->top_item->value * -1);
+	else
+		tmp_val = a->top_item->value;
+	ft_printf("Comparaison : %d & %d -> %d\n", tmp_val, *b_mask, (tmp_val & *b_mask));
 	if ((tmp_val & *b_mask) == 0)
 		push_a(a, b);
 	else
@@ -309,7 +318,7 @@ void	radix_pos(t_stack *a, t_stack *b)
 	stack_size = a->size;
 	b_mask = 0;
 	i = -1;
-	ft_printf("POS\n");
+	ft_printf("VALMAX: %d\nPOS\n", max_size);
 	while (++i <= max_size)
 	{
 		j = 0;
@@ -317,19 +326,17 @@ void	radix_pos(t_stack *a, t_stack *b)
 		{
 			if (a->top_item->value >= 0)
 				push_pos(&i, &b_mask, a, b);
-			else
-				rotate_a(a, FALSE);
 			if (sort_check(a) == TRUE && rev_sort_check(b) == TRUE)
 				break;
 		}
-		while (pos_check(b) == TRUE)
+		while (b->top_item && pos_check(b) == TRUE)
 		{
 			if (b->top_item->value >= 0)
 				push_a(a, b);
 			else
 				rotate_b(b, FALSE);
 		}
-		if (sort_check(a) == TRUE)
+		if (sort_check(a) == TRUE && rev_sort_check(b) == TRUE)
 			break;
 	}
 }
@@ -346,6 +353,7 @@ void	radix_neg(t_stack *a, t_stack *b)
 	stack_size = b->size;
 	b_mask = 0;
 	i = -1;
+	ft_printf("VALMAX_N : %d\n", max_size);
 	while (++i <= max_size)
 	{
 		j = 0;
@@ -353,19 +361,16 @@ void	radix_neg(t_stack *a, t_stack *b)
 		{
 			if (b->top_item->value < 0)
 				push_neg(&i, &b_mask, a, b);
-			else
-				rotate_b(a, FALSE);
-			if (neg_check(a) == FALSE && rev_sort_check(b) == TRUE)
+			ft_printf("LOL\n");
+			if (rev_sort_check(b) == TRUE && neg_check(a) == FALSE)
 				break;
 		}
 		while (neg_check(a) == TRUE)
 		{
 			if (a->top_item->value < 0)
 				push_b(a, b);
-			else
-				rotate_a(a, FALSE);
 		}
-		if (rev_sort_check(b) == TRUE)
+		if (rev_sort_check(b) == TRUE && sort_check(a) == TRUE)
 			break;
 	}
 }
@@ -380,4 +385,6 @@ void	radix(t_stack *a, t_stack *b)
 		while (b->top_item)
 			push_a(a, b);
 	}
+	else
+		radix_pos(a, b);
 }
