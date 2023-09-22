@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 22:09:56 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:35:05 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int			power10(int power);
 t_bool		scope_validation(int *nb, int *scope, int *box);
 void		ft_intlen2(long int n, int *len);
 void		radix(t_stack *a, t_stack *b);
+void		radix_pos(t_stack *a, t_stack *b);
+void		radix_neg(t_stack *a, t_stack *b);
 void		radix_sort(t_stack *stack, t_stack *stack2, int *scope);
 void		final_sort(t_stack *a, t_stack *b);
 t_bool		scope_check(t_stack *stack, int *mask);

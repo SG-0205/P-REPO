@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/21 21:26:29 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:19:57 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,10 @@ int	main(int argc, char **argv)
 	args_checker(argc, argv), stack_init(a, b, argc, argv);
 	if (initial_parse(a, b) == TRUE)
 		return (0);
+	// neg_sort(a, b);
+	printstack(a, 'a'), printstack(b, 'b');
 	radix(a, b);
+	printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");
 	else
