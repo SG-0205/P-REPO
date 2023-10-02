@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/22 18:35:05 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:48:21 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_stack
 
 void		error(void);
 void		stack_init(t_stack *a, t_stack *b, int argc, char **argv);
+void		stack_init_split(t_stack *a, t_stack *b, char **argv);
 void		doublon_check(int argc, char **args);
 void		args_checker(int argc, char **args);
 void		printstack(t_stack *stack, char name);

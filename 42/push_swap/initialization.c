@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/14 16:42:13 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:11:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,31 @@ void	stack_init(t_stack *a, t_stack *b, int argc, char **argv)
 		i ++;
 	}
 	a->size = (argc - 1);
+	a->top_item = top;
+	a->last_item = ft_lstlast_ps(top);
+	b->last_item = NULL;
+	b->top_item = NULL;
+	b->size = 0;
+}
+
+void	stack_init_split(t_stack *a, t_stack *b, char **argv)
+{
+	int			i;
+	t_list_ps	*new;
+	t_list_ps	*top;
+
+	i = 0;
+	top = ft_lstnew_ps(ft_atoi(argv[0]));
+	if (!top)
+		error();
+	while (argv[++i])
+	{
+		new = ft_lstnew_ps(ft_atoi(argv[i]));
+		if (!new)
+			ft_lstclear_ps(&top);
+		ft_lstadd_back_ps(&top, new);
+	}
+	a->size = (i);
 	a->top_item = top;
 	a->last_item = ft_lstlast_ps(top);
 	b->last_item = NULL;
@@ -76,6 +101,8 @@ void	args_checker(int argc, char **args)
 	i = 1;
 	if (argc == 1)
 		error();
+	if (argc == 2)
+		i = 0;
 	while (i < argc)
 	{
 		j = 0;

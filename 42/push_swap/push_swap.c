@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/22 19:19:57 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:47:58 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,41 @@ t_bool	is_max(t_stack *stack)
 	return (TRUE);
 }
 
+void	free_split(char **splitted_args)
+{
+	int	i;
+
+	i = 0;
+	while (splitted_args[i])
+		i ++;
+	while (i --)
+		free(splitted_args[i]);
+}
+
+void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
+{
+	char	**splitted_argv;
+
+	splitted_argv = argv;
+	if (*argc < 1)
+		error();
+	if (*argc == 2)
+	{
+		splitted_argv = ft_split(argv[1], ' ');
+		int i = -1;
+		while (splitted_argv[++i])
+			ft_printf("%s\n", splitted_argv[i]);
+		args_checker(*argc, splitted_argv);
+		stack_init_split(a, b, splitted_argv);
+		free_split(splitted_argv);
+	}
+	else
+	{
+		args_checker(*argc, splitted_argv);
+		stack_init(a, b, *argc, splitted_argv);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -125,10 +160,9 @@ int	main(int argc, char **argv)
 	b = (t_stack *)malloc(sizeof(t_stack));
 	if (!b)
 		error();
-	args_checker(argc, argv), stack_init(a, b, argc, argv);
+	argc_check(&argc, argv, a, b);
 	if (initial_parse(a, b) == TRUE)
 		return (0);
-	// neg_sort(a, b);
 	printstack(a, 'a'), printstack(b, 'b');
 	radix(a, b);
 	printstack(a, 'a'), printstack(b, 'b');
