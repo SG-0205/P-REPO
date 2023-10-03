@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/02 17:48:21 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:07:27 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		stack_init(t_stack *a, t_stack *b, int argc, char **argv);
 void		stack_init_split(t_stack *a, t_stack *b, char **argv);
 void		doublon_check(int argc, char **args);
 void		args_checker(int argc, char **args);
+int			free_all(t_stack *a, t_stack *b);
 void		printstack(t_stack *stack, char name);
 
 void		swap_a(t_stack *stack, t_bool ss);

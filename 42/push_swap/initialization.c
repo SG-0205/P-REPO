@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/02 18:11:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:24:13 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,46 @@ void	error()
 {
 	ft_putendl("Error");
 	exit(0);
+}
+
+void	free_from_top(t_stack *stack, t_stack *empty)
+{
+	t_list_ps	*prev;
+	t_list_ps	*tmp;
+	
+	if (!stack)
+		return ;
+	prev = stack->top_item;
+	tmp = NULL;
+	while (tmp)
+	{
+		tmp = prev->next;
+		free(prev);
+		prev = tmp;
+	}
+	free(stack);
+	free(empty);
+	error();
+}
+
+int	check_doub_int(t_stack *a)
+{
+	t_list_ps	*tmp;
+	t_list_ps	*tmp2;
+
+	tmp = a->top_item;
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp2->value == tmp->value)
+				return (1);
+			tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 void	stack_init(t_stack *a, t_stack *b, int argc, char **argv)
@@ -42,6 +82,8 @@ void	stack_init(t_stack *a, t_stack *b, int argc, char **argv)
 	b->last_item = NULL;
 	b->top_item = NULL;
 	b->size = 0;
+	if (check_doub_int(a) == 1)
+		free_from_top(a, b);
 }
 
 void	stack_init_split(t_stack *a, t_stack *b, char **argv)
@@ -67,6 +109,8 @@ void	stack_init_split(t_stack *a, t_stack *b, char **argv)
 	b->last_item = NULL;
 	b->top_item = NULL;
 	b->size = 0;
+	if (check_doub_int(a) == 1)
+		free_from_top(a, b);
 }
 
 void	doublon_check(int argc, char **args)
@@ -75,6 +119,8 @@ void	doublon_check(int argc, char **args)
 	int	j;
 
 	i = 1;
+	if (argc == 2)
+		i = 0;
 	while (i < argc)
 	{
 		j = i + 1;

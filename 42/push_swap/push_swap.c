@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/02 19:47:58 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:28:12 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ void	printstack(t_stack *stack, char name)
 
 int	free_all(t_stack *a, t_stack *b)
 {
-	if (!a || !b)
+	if (!a && !b)
 		return (0);
-	if (a->top_item)
+	if (a && a->top_item)
 		ft_lstclear_ps(&a->top_item), a->last_item = NULL;
-	if (b->top_item)
+	if (b && b->top_item)
 		ft_lstclear_ps(&b->top_item);
 	printstack(a, 'a'), printstack(b, 'b');
-	free(a);
-	free(b);
+	if (a)
+		free(a);
+	if (b)
+		free(b);
 	return (TRUE);
 }
 
@@ -121,29 +123,26 @@ void	free_split(char **splitted_args)
 		i ++;
 	while (i --)
 		free(splitted_args[i]);
+	free(splitted_args);
 }
 
 void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
 {
 	char	**splitted_argv;
 
-	splitted_argv = argv;
 	if (*argc < 1)
 		error();
 	if (*argc == 2)
 	{
 		splitted_argv = ft_split(argv[1], ' ');
-		int i = -1;
-		while (splitted_argv[++i])
-			ft_printf("%s\n", splitted_argv[i]);
 		args_checker(*argc, splitted_argv);
 		stack_init_split(a, b, splitted_argv);
 		free_split(splitted_argv);
 	}
 	else
 	{
-		args_checker(*argc, splitted_argv);
-		stack_init(a, b, *argc, splitted_argv);
+		args_checker(*argc, argv);
+		stack_init(a, b, *argc, argv);
 	}
 }
 
@@ -161,7 +160,7 @@ int	main(int argc, char **argv)
 	if (!b)
 		error();
 	argc_check(&argc, argv, a, b);
-	if (initial_parse(a, b) == TRUE)
+	if ((a && b) && initial_parse(a, b) == TRUE)
 		return (0);
 	printstack(a, 'a'), printstack(b, 'b');
 	radix(a, b);
