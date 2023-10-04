@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 22:26:31 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/12 20:35:35 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:16:15 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bool	check_pivot(t_stack *stack, int *pivot_value)
 	tmp = stack->top_item;
 	while (tmp)
 	{
-		if (tmp->value < *pivot_value)
+		if (tmp->value > *pivot_value)
 			return (FALSE);
 		tmp = tmp->next;
 	}
@@ -91,27 +91,27 @@ void	merge(t_stack *a, t_stack *b)
 	}
 }
 
-static void	sort_a(t_stack *a, t_stack *b, int *pivot_value)
-{
-	while (check_pivot(a, pivot_value) != TRUE && a->size != 1)
-	{
-		ft_printf("SORT");
-		if (a->top_item->value < *pivot_value)
-			push_b(a, b), order_b(b);
-		else if (a->last_item->value < *pivot_value)
-			reverse_r_a(a, FALSE), order_b(b);
-		else if (a->top_item->next && a->top_item->next->value < *pivot_value)
-			swap_a(a, FALSE), order_b(b);
-		else if (a->top_item->next && a->top_item->next->value > *pivot_value)
-			rotate_a(a, FALSE), order_b(b);
-		else if (a->last_item->value > *pivot_value
-		&& a->top_item->value > *pivot_value)
-			rotate_a(a, FALSE), order_b(b);
-		else
-			break;
-	}
-	// (void)printstack(a, name);
-}
+// static void	sort_a(t_stack *a, t_stack *b, int *pivot_value)
+// {
+// 	while (check_pivot(a, pivot_value) != TRUE && a->size != 1)
+// 	{
+// 		ft_printf("SORT");
+// 		if (a->top_item->value < *pivot_value)
+// 			push_b(a, b), order_b(b);
+// 		else if (a->last_item->value < *pivot_value)
+// 			reverse_r_a(a, FALSE), order_b(b);
+// 		else if (a->top_item->next && a->top_item->next->value < *pivot_value)
+// 			swap_a(a, FALSE), order_b(b);
+// 		else if (a->top_item->next && a->top_item->next->value > *pivot_value)
+// 			rotate_a(a, FALSE), order_b(b);
+// 		else if (a->last_item->value > *pivot_value
+// 		&& a->top_item->value > *pivot_value)
+// 			rotate_a(a, FALSE), order_b(b);
+// 		else
+// 			break;
+// 	}
+// 	// (void)printstack(a, name);
+// }
 
 void	keep_pivot_a(t_stack *a, t_stack *b, int *pivot_value)
 {
@@ -124,24 +124,44 @@ void	keep_pivot_a(t_stack *a, t_stack *b, int *pivot_value)
 	}
 }
 
+int	get_minval(t_stack *stack)
+{
+	t_list_ps	*tmp;
+	int			ret;
+	int			tmp_val;
+
+	ret = 0;
+	if (stack->top_item)
+		tmp = stack->top_item;
+	while (tmp)
+	{
+		tmp_val = tmp->value;
+		if (tmp_val < 0)
+			tmp_val = -tmp_val;
+		if (ret < tmp_val)
+			ret = tmp_val;
+		tmp = tmp->next;
+	}
+	return (ret);
+}
+
 void	quick_sort_a(t_stack *a, t_stack *b)
 {
 	int pivot_value;
 	
-	pivot_value = (get_median_item(a, get_median(a))->value);
-	pv_check(&pivot_value, a);	
-	if (a->size <= 3)
-		sort_three(a, swap_a, reverse_r_a);
-	sort_a(a, b, &pivot_value);
-	// printstack(b, 'b');
-	if (sort_check(a) == FALSE)
-		quick_sort_a(a, b);
-	// if (rev_sort_check(b) == FALSE)
-	// 	order_b(b);
-	// merge(a, b);
+	pivot_value = a->last_item->value;
+	if (get_minval(a) == pivot_value)
+		pivot_value = get_median_item(a, get_median(a))->value;
+	printstack(a, 'a');
+	while (check_pivot(a, &pivot_value) == FALSE)
+	{
+		if (a->top_item->value <= pivot_value)
+			rotate_a(a, FALSE);
+		else if (a->top_item->value > pivot_value)
+			push_b(a, b);
+	}
 	while (b->size != 0)
 		push_a(a, b);
 	if (sort_check(a) == FALSE)
 		quick_sort_a(a, b);
-	// printstack(a, 'a');
 }

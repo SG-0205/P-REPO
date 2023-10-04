@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/03 18:28:12 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:34:25 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_bool	is_max(t_stack *stack)
 
 void	free_split(char **splitted_args)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (splitted_args[i])
@@ -130,12 +130,12 @@ void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
 {
 	char	**splitted_argv;
 
-	if (*argc < 1)
+	if (*argc < 2)
 		error();
 	if (*argc == 2)
 	{
 		splitted_argv = ft_split(argv[1], ' ');
-		args_checker(*argc, splitted_argv);
+		args_checker_split(*argc, splitted_argv);
 		stack_init_split(a, b, splitted_argv);
 		free_split(splitted_argv);
 	}
@@ -160,10 +160,11 @@ int	main(int argc, char **argv)
 	if (!b)
 		error();
 	argc_check(&argc, argv, a, b);
-	if ((a && b) && initial_parse(a, b) == TRUE)
+	if (initial_parse(a, b) == TRUE)
 		return (0);
-	printstack(a, 'a'), printstack(b, 'b');
+	// printstack(a, 'a'), printstack(b, 'b');
 	radix(a, b);
+	// quick_sort_a(a, b);
 	printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)
 		ft_printf("\nOK\n");

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:49:51 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/03 16:36:06 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:14:16 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_initarray(char **array, const char *s, char c)
 		{
 			array[i] = ft_strnew(ft_lentillc(&(s[j]), c));
 			if (!array[i])
-				return (ft_checkalloc(array, nb_wrds));
+				return (ft_checkalloc(array, i));
 			is_init = TRUE;
 			i ++;
 		}

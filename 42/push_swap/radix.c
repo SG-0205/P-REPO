@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/22 22:36:07 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:10:44 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,12 +295,12 @@ void	push_neg(int *i, int *b_mask, t_stack *a, t_stack *b)
 		*b_mask = 1 << *i;
 	else
 		*b_mask = 0;
-	if (a->top_item->value < 0)
-		tmp_val = (a->top_item->value * -1);
-	else
+	// if (a->top_item->value < 0)
+	// 	tmp_val = (a->top_item->value * -1);
+	// else
 		tmp_val = a->top_item->value;
 	ft_printf("Comparaison : %d & %d -> %d\n", tmp_val, *b_mask, (tmp_val & *b_mask));
-	if ((tmp_val & *b_mask) == 0)
+	if (((tmp_val & (~(1 << (sizeof(int) * 8 - 1)))) & *b_mask) == 0)
 		push_a(a, b);
 	else
 		rotate_b(b, FALSE);

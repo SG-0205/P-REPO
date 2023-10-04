@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:13:12 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/03 18:24:13 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:14:24 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,12 @@ void	error()
 
 void	free_from_top(t_stack *stack, t_stack *empty)
 {
-	t_list_ps	*prev;
-	t_list_ps	*tmp;
+	// t_list_ps	*prev;
+	// t_list_ps	*tmp;
 	
 	if (!stack)
 		return ;
-	prev = stack->top_item;
-	tmp = NULL;
-	while (tmp)
-	{
-		tmp = prev->next;
-		free(prev);
-		prev = tmp;
-	}
+	ft_lstclear_ps(&stack->top_item);
 	free(stack);
 	free(empty);
 	error();
@@ -46,9 +39,11 @@ int	check_doub_int(t_stack *a)
 	tmp = a->top_item;
 	while (tmp)
 	{
+		// ft_printf("tmp = %d\n", tmp->value);
 		tmp2 = tmp->next;
 		while (tmp2)
 		{
+			// ft_printf("\t%d =? %d\n", tmp2->value, tmp->value);
 			if (tmp2->value == tmp->value)
 				return (1);
 			tmp2 = tmp2->next;
@@ -110,7 +105,7 @@ void	stack_init_split(t_stack *a, t_stack *b, char **argv)
 	b->top_item = NULL;
 	b->size = 0;
 	if (check_doub_int(a) == 1)
-		free_from_top(a, b);
+		(free_split(argv), free_from_top(a, b));
 }
 
 void	doublon_check(int argc, char **args)
@@ -134,10 +129,57 @@ void	doublon_check(int argc, char **args)
 	}
 }
 
-// int	t_isdigit2(char c)
-// {
+size_t	split_len(char **array)
+{
+	size_t	i;
+
+	i = 0;
+	while (array[i])
+		i ++;
+	return (i);
+}
+
+void	doublon_check_split(int argc, char **args)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < (int)split_len(args))
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(args[i], args[j]) == 0)
+				free_split(args), error();
+			j ++;
+		}
+		i ++;
+	}
+}
+
+void	args_checker_split(int argc, char **args)
+{
+	int	i;
+	int	j;
 	
-// }
+	i = 0;
+	while (i < (int)split_len(args))
+	{
+		j = 0;
+		if (ft_atoi(args[i]) > __INT_MAX__
+			|| ft_atoi(args[i]) < (__INT_MAX__ * -1) + 1)
+				free_split(args), error();
+		while (args[i][j])
+		{
+			if (ft_isdigit(args[i][j]) == 0 && args[i][j] != '-')
+				free_split(args), error();
+			j ++;
+		}
+		i ++;
+	}
+	doublon_check_split(argc, args);
+}
 
 void	args_checker(int argc, char **args)
 {
@@ -147,8 +189,6 @@ void	args_checker(int argc, char **args)
 	i = 1;
 	if (argc == 1)
 		error();
-	if (argc == 2)
-		i = 0;
 	while (i < argc)
 	{
 		j = 0;
