@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/04 20:02:57 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 00:10:44 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ void		sort_three_rev(t_stack *stack, void (*swap)(t_stack *, t_bool),
 void (*reverse_r)(t_stack *, t_bool));
 void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),
 void (*reverse_r)(t_stack *, t_bool));
+void		sort5_rev(t_stack *a, t_stack *b);
 void		order_b(t_stack *b);
 void		merge(t_stack *a, t_stack *b);
 t_bool		check_rest(t_list_ps *start);
 void		neg_sort(t_stack *a, t_stack *b);
+t_bool		neg_check(t_stack *stack);
+size_t		neg_count(t_stack *stack);
 int			get_maxlen(t_stack *stack);
 int			get_int(int value, int order);
 int			power10(int power);

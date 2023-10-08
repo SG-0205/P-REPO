@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/04 20:34:25 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 00:32:52 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,30 @@ int	sort3_return(t_stack *a, t_stack *b)
 		error();
 	sort_three(a, swap_a, reverse_r_a);
 	return (free_all(a, b));
+}
+
+void	sort5_rev(t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		error();
+	while (a->size > 3)
+		push_b(a, b);
+	if (neg_count(a) > 1 && a->top_item->value < b->top_item->next->value)
+		swap_a(a, FALSE);
+	sort_three_rev(b, swap_b, reverse_r_b);
+	while (neg_check(a) == TRUE) 
+	{
+		push_b(a, b);
+		if (b->top_item->value > (ft_lstbflast(b->top_item)->value)
+		&& b->top_item->value < b->last_item->value)
+			reverse_r_b(b, FALSE), swap_b(b, FALSE),
+			rotate_b(b, FALSE), rotate_b(b, FALSE);
+		else if (b->top_item->value > b->last_item->value)
+			rotate_b(b, FALSE);
+		else if (b->top_item->value > b->top_item->next->value)
+			swap_b(b, FALSE);
+	}
+	printstack(a, 'a'), printstack(b, 'b');
 }
 
 int	sort5_return(t_stack *a, t_stack *b)
@@ -163,7 +187,7 @@ int	main(int argc, char **argv)
 	if (initial_parse(a, b) == TRUE)
 		return (0);
 	// printstack(a, 'a'), printstack(b, 'b');
-	radix(a, b);
+	// radix(a, b);
 	// quick_sort_a(a, b);
 	printstack(a, 'a'), printstack(b, 'b');
 	if (sort_check(a) == TRUE && b->size == 0)

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/04 21:10:44 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 00:32:14 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ t_bool	neg_check(t_stack *stack)
 		tmp = tmp->next;
 	}
 	return (FALSE);
+}
+
+size_t	neg_count(t_stack *stack)
+{
+	t_list_ps	*tmp;
+	size_t		count;
+
+	count = 0;
+	if (!stack)
+		return (0);
+	if (stack->top_item)
+		tmp = stack->top_item;
+	while (tmp)
+	{
+		if (tmp->value < 0)
+			count ++;
+		tmp = tmp->next;
+	}
+	return (count);
 }
 
 t_bool	pos_check(t_stack *stack)
@@ -280,6 +299,7 @@ void	push_pos(int *i, int *b_mask, t_stack *a, t_stack *b)
 		*b_mask = 1 << *i;
 	else
 		*b_mask = 0;
+	if (a->top_item->value >= 0)
 	ft_printf("Comparaison : %d & %d -> %d\n", a->top_item->value, *b_mask, (a->top_item->value & *b_mask));
 	if ((a->top_item->value & *b_mask) == 0)
 		push_b(a, b);
@@ -292,7 +312,7 @@ void	push_neg(int *i, int *b_mask, t_stack *a, t_stack *b)
 	int	tmp_val;
 
 	if (*i >= 0 && *i < __INT_MAX__)
-		*b_mask = 1 << *i;
+		*b_mask = (1 << (sizeof(int) * 8 - 1)) << *i;
 	else
 		*b_mask = 0;
 	// if (a->top_item->value < 0)
@@ -300,7 +320,7 @@ void	push_neg(int *i, int *b_mask, t_stack *a, t_stack *b)
 	// else
 		tmp_val = a->top_item->value;
 	ft_printf("Comparaison : %d & %d -> %d\n", tmp_val, *b_mask, (tmp_val & *b_mask));
-	if (((tmp_val & (~(1 << (sizeof(int) * 8 - 1)))) & *b_mask) == 0)
+	if ((tmp_val & *b_mask) == 0)
 		push_a(a, b);
 	else
 		rotate_b(b, FALSE);
@@ -357,9 +377,9 @@ void	radix_neg(t_stack *a, t_stack *b)
 	while (++i <= max_size)
 	{
 		j = 0;
-		while (j ++ < stack_size)
+		while (j ++ < stack_size && rev_sort_check(b) == FALSE)
 		{
-			if (b->top_item->value < 0)
+			if (b->top_item->value < 0 && rev_sort_check(b) == FALSE)
 				push_neg(&i, &b_mask, a, b);
 			ft_printf("LOL\n");
 			if (rev_sort_check(b) == TRUE && neg_check(a) == FALSE)
@@ -375,11 +395,27 @@ void	radix_neg(t_stack *a, t_stack *b)
 	}
 }
 
+
+void	b_size_check(t_stack *a, t_stack *b)
+{
+	if (b->size == 1)
+		return ;
+	else if (b->size == 2 && rev_sort_check(b) == FALSE)
+		swap_b(b, FALSE);
+	else if (b->size == 3)
+		sort_three_rev(b, swap_b, reverse_r_b);
+	else if (b->size < 6)
+		sort5_rev(a, b);
+}
+
 void	radix(t_stack *a, t_stack *b)
 {
 	if (neg_check(a) == TRUE)
 	{		
-		(neg_sort(a, b), radix_neg(a, b), radix_pos(a, b));
+		neg_sort(a, b);
+		b_size_check(a, b);
+		radix_neg(a, b);
+		radix_pos(a, b);
 		// while (rev_sort_check(b) == FALSE)
 		// 	rotate_b(b, FALSE);
 		while (b->top_item)
