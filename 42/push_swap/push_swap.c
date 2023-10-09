@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 16:14:26 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:38:07 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,18 +154,22 @@ void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
 {
 	char	**splitted_argv;
 
+	a->top_item = NULL;
+	b->top_item = NULL;
 	if (*argc < 2)
-		error();
+		free_all(a, b), error();
 	if (*argc == 2)
 	{
 		splitted_argv = ft_split(argv[1], ' ');
-		args_checker_split(*argc, splitted_argv);
+		if (args_checker_split(*argc, splitted_argv) == FALSE)
+			(free_split(splitted_argv), free_all(a, b), error());
 		stack_init_split(a, b, splitted_argv);
 		free_split(splitted_argv);
 	}
 	else
 	{
-		args_checker(*argc, argv);
+		if (args_checker(*argc, argv) == FALSE)
+			free_all(a, b), error();
 		stack_init(a, b, *argc, argv);
 	}
 }

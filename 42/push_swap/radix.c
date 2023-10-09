@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 17:36:19 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:54:57 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,18 +378,11 @@ void	radix_neg(t_stack *a, t_stack *b)
 	{
 		j = 0;
 		while (j ++ < stack_size && rev_sort_check(b) == FALSE)
-		{
 			if (b->top_item->value < 0)
 				push_neg(&i, &b_mask, a, b);
-			ft_printf("LOL\n");
-			if (rev_sort_check(b) == TRUE)
-				break;
-		}
 		while (neg_check(a) == TRUE)
-		{
 			if (a->top_item->value < 0)
 				push_b(a, b);
-		}
 		if (rev_sort_check(b) == TRUE)
 			break;
 	}
@@ -413,11 +406,7 @@ void	radix(t_stack *a, t_stack *b)
 	if (neg_check(a) == TRUE)
 	{		
 		neg_sort(a, b);
-		b_size_check(a, b);
-		radix_neg(a, b);
-		radix_pos(a, b);
-		// while (rev_sort_check(b) == FALSE)
-		// 	rotate_b(b, FALSE);
+		(b_size_check(a, b), radix_neg(a, b), radix_pos(a, b));
 		while (b->top_item)
 			push_a(a, b);
 	}
