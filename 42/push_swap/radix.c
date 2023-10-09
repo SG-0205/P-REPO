@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 00:32:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:36:19 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,18 +309,18 @@ void	push_pos(int *i, int *b_mask, t_stack *a, t_stack *b)
 
 void	push_neg(int *i, int *b_mask, t_stack *a, t_stack *b)
 {
-	int	tmp_val;
+	// int	tmp_val;
 
 	if (*i >= 0 && *i < __INT_MAX__)
-		*b_mask = (1 << (sizeof(int) * 8 - 1)) << *i;
+		*b_mask = 1 << *i;
 	else
 		*b_mask = 0;
 	// if (a->top_item->value < 0)
-	// 	tmp_val = (a->top_item->value * -1);
+	// 	tmp_val = -a->top_item->value;
 	// else
-		tmp_val = a->top_item->value;
-	ft_printf("Comparaison : %d & %d -> %d\n", tmp_val, *b_mask, (tmp_val & *b_mask));
-	if ((tmp_val & *b_mask) == 0)
+	// 	tmp_val = a->top_item->value;
+	ft_printf("Comparaison : %d & %d -> %d\n", -b->top_item->value, *b_mask, (-b->top_item->value & *b_mask));
+	if ((-b->top_item->value & *b_mask) == 0)
 		push_a(a, b);
 	else
 		rotate_b(b, FALSE);
@@ -379,10 +379,10 @@ void	radix_neg(t_stack *a, t_stack *b)
 		j = 0;
 		while (j ++ < stack_size && rev_sort_check(b) == FALSE)
 		{
-			if (b->top_item->value < 0 && rev_sort_check(b) == FALSE)
+			if (b->top_item->value < 0)
 				push_neg(&i, &b_mask, a, b);
 			ft_printf("LOL\n");
-			if (rev_sort_check(b) == TRUE && neg_check(a) == FALSE)
+			if (rev_sort_check(b) == TRUE)
 				break;
 		}
 		while (neg_check(a) == TRUE)
@@ -390,7 +390,7 @@ void	radix_neg(t_stack *a, t_stack *b)
 			if (a->top_item->value < 0)
 				push_b(a, b);
 		}
-		if (rev_sort_check(b) == TRUE && sort_check(a) == TRUE)
+		if (rev_sort_check(b) == TRUE)
 			break;
 	}
 }
