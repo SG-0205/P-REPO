@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/18 16:01:25 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:20:30 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate_b(t_stack *b, t_bool rr)
 	t_list_ps	*tmp;
 
 	if (!b || b->size == 0)
-		return;
+		return ;
 	tmp = b->top_item;
 	b->top_item = b->top_item->next;
 	tmp->next = NULL;
@@ -27,13 +27,12 @@ void	rotate_b(t_stack *b, t_bool rr)
 		ft_putendl("rr");
 	else
 		ft_putendl("rb");
-	// printstack(b, 'b');
 }
 
 void	reverse_r_a(t_stack *a, t_bool rrr)
 {
 	if (!a || a->size == 0)
-		return;
+		return ;
 	if (a->size == 2)
 		swap_a(a, FALSE);
 	(ft_lstbflast(a->top_item))->next = NULL;
@@ -44,13 +43,12 @@ void	reverse_r_a(t_stack *a, t_bool rrr)
 		ft_putendl("rrr");
 	else
 		ft_putendl("rra");
-	// printstack(a, 'a');
 }
 
 void	reverse_r_b(t_stack *b, t_bool rrr)
 {
 	if (!b || b->size == 0)
-		return;
+		return ;
 	(ft_lstbflast(b->top_item))->next = NULL;
 	ft_lstadd_front_ps(&b->top_item, b->last_item);
 	b->top_item = b->last_item;
@@ -59,5 +57,4 @@ void	reverse_r_b(t_stack *b, t_bool rrr)
 		ft_putendl("rrr");
 	else
 		ft_putendl("rrb");
-	// printstack(b, 'b');
 }

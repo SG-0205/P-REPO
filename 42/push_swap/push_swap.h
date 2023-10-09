@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 18:19:04 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:59:07 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_stack
 }	t_stack;
 
 void		error(void);
+t_bool		initial_parse(t_stack *a, t_stack *b);
 void		stack_init(t_stack *a, t_stack *b, int argc, char **argv);
 void		stack_init_split(t_stack *a, t_stack *b, char **argv);
 t_bool		doublon_check(int argc, char **args);
@@ -37,6 +38,10 @@ t_bool		args_checker_split(int argc, char **args);
 int			free_all(t_stack *a, t_stack *b);
 void		free_split(char **splitted_args);
 t_bool		is_max(t_stack *stack);
+size_t		split_len(char **array);
+void		b_size_check(t_stack *a, t_stack *b);
+t_bool		pos_check(t_stack *stack);
+t_bool		doublon_check_split(int argc, char **args);
 int			get_maxval(t_stack *stack);
 void		printstack(t_stack *stack, char name);
 
@@ -51,18 +56,19 @@ void		reverse_r_a(t_stack *a, t_bool rrr);
 void		reverse_r_b(t_stack *b, t_bool rrr);
 
 int			get_median(t_stack *stack);
-t_list_ps 	*get_median_item(t_stack *stack, int pivot_location);
+t_list_ps	*get_median_item(t_stack *stack, int pivot_location);
 int			medianof3_pivot(t_stack *a);
 void		quick_sort_a(t_stack *a, t_stack *b);
 void		quick_sort_b(t_stack *a, t_stack *b, char from_name);
 t_bool		sort_check(t_stack *a);
 t_bool		rev_sort_check(t_stack *a);
 t_bool		check_pivot(t_stack *stack, int *pivot_value);
-t_bool		end_check(t_stack *stack, char name, void (*swap)(t_stack *, t_bool));
+t_bool		end_check(t_stack *stack, char name,
+				void (*swap)(t_stack *, t_bool));
 void		sort_three_rev(t_stack *stack, void (*swap)(t_stack *, t_bool),
-void (*reverse_r)(t_stack *, t_bool));
+				void (*reverse_r)(t_stack *, t_bool));
 void		sort_three(t_stack *stack, void (*swap)(t_stack *, t_bool),
-void (*reverse_r)(t_stack *, t_bool));
+				void (*reverse_r)(t_stack *, t_bool));
 void		sort5_rev(t_stack *a, t_stack *b);
 void		order_b(t_stack *b);
 void		merge(t_stack *a, t_stack *b);
@@ -90,6 +96,5 @@ void		ft_lstadd_back_ps(t_list_ps **lst, t_list_ps *new);
 void		ft_lstadd_front_ps(t_list_ps **lst, t_list_ps *new);
 t_list_ps	*ft_lstbflast(t_list_ps *top);
 t_list_ps	*ft_lstmap_ps(t_list_ps *lst, int (*f)(int));
-
 
 #endif

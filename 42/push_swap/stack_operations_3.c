@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:54:24 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/07 20:19:47 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:20:44 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	swap_both(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
-		return;
+		return ;
 	swap_a(a, TRUE);
 	swap_b(b, TRUE);
 }
@@ -31,7 +31,7 @@ void	rotate_all(t_stack *a, t_stack *b)
 void	reverse_r_all(t_stack *a, t_stack *b)
 {
 	if (!a || !b || a->size == 0 || b->size == 0)
-		return;
+		return ;
 	reverse_r_a(a, TRUE);
 	reverse_r_b(b, TRUE);
 }

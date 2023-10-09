@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:55:53 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/09/18 15:12:07 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:47:49 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_list_ps	*ft_lstmap_ps(t_list_ps *lst, int (*f)(int))
 t_list_ps	*ft_lstbflast(t_list_ps *top)
 {
 	t_list_ps	*tmp;
-	
+
 	if (!top)
 		return (NULL);
 	tmp = top;
