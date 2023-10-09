@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:41:17 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 20:26:54 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:36:35 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	radix_neg(t_stack *a, t_stack *b)
 	max_size = get_maxval(b);
 	stack_size = b->size;
 	i = -1;
-	ft_printf("VALMAX_N : %d\n", max_size);
 	while (++i <= max_size)
 	{
 		j = 0;
