@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:28:28 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/09 20:35:59 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/13 02:21:35 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool		initial_parse(t_stack *a, t_stack *b);
 void		stack_init(t_stack *a, t_stack *b, int argc, char **argv);
 void		stack_init_split(t_stack *a, t_stack *b, char **argv);
 t_bool		doublon_check(int argc, char **args);
+void		argc_check(int *argc, char **argv, t_stack *a, t_stack *b);
 t_bool		args_checker(int argc, char **args);
 t_bool		args_checker_split(int argc, char **args);
 int			free_all(t_stack *a, t_stack *b);
