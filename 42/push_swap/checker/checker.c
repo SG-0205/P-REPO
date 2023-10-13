@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 01:54:25 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/13 03:55:21 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:59:25 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,8 @@ void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
 	}
 }
 
-t_command	*move_listener(void)
+static void	listen(char *input, t_command *tmp, t_command *top)
 {
-	char		*input;
-	t_command	*tmp;
-	t_command	*commands;
-
-	input = get_next_line(0);
-	if (!input)
-		return (NULL);
-	commands = (ft_lstnew_ch(input));
-	if (!commands)
-		return (NULL);
-	free(input);
 	while (1)
 	{
 		input = get_next_line(0);
@@ -68,28 +57,33 @@ t_command	*move_listener(void)
 			break ;
 		tmp = ft_lstnew_ch(input);
 		if (!tmp)
-			ft_lstclear_ch(&commands);
-		free(input);
-		ft_lstadd_back_ch(&commands, tmp), free(tmp);
+		{
+			(ft_lstclear_ch(&top), free(input));
+			return ;
+		}
+		ft_lstadd_back_ch(&top, tmp);
 	}
-	return (commands);
 }
 
-void	commands_checker(t_command *commands, t_stack *a, t_stack *b)
+t_command	*move_listener(void)
 {
+	char		*input;
 	t_command	*tmp;
+	t_command	*commands;
 
-	tmp = commands;
-	while (tmp)
+	commands = NULL;
+	tmp = NULL;
+	input = get_next_line(0);
+	if (!input)
+		return (NULL);
+	commands = ft_lstnew_ch(input);
+	if (!commands)
 	{
-		if (ft_strcmp(tmp->command, "pa\n") == 0 || ft_strcmp(tmp->command, "pb\n") == 0
-			|| ft_strcmp(tmp->command, "sa\n") == 0 || ft_strcmp(tmp->command, "sb\n") == 0
-			|| ft_strcmp(tmp->command, "rra\n") == 0 || ft_strcmp(tmp->command, "rrb\n") == 0
-			|| ft_strcmp(tmp->command, "ss\n") == 0 || ft_strcmp(tmp->command, "rrr\n") == 0)
-			tmp = tmp->next;
-		else
-			ft_lstclear_ch(&commands), free(commands), free_all(a, b), error();
+		free(input);
+		return (NULL);
 	}
+	listen(input, tmp, commands);
+	return (commands);
 }
 
 int	main(int argc, char **argv)
@@ -109,4 +103,9 @@ int	main(int argc, char **argv)
 	argc_check(&argc, argv, a, b);
 	commands = move_listener();
 	commands_checker(commands, a, b);
+	if (exec_cmds(commands, a, b) == TRUE)
+		ft_putendl("OK");
+	else
+		ft_putendl("KO");
+	(ft_lstclear_ch(&commands), free_all(a, b));
 }

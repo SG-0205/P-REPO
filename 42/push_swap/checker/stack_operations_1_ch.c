@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations_1.c                               :+:      :+:    :+:   */
+/*   stack_operations_1_ch.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 13:43:30 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/13 15:37:06 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:12:18 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void	swap_a(t_stack *stack, t_bool ss)
+void	swap_a_ch(t_stack *stack)
 {
 	t_list_ps	*tmp;
 
@@ -22,11 +22,9 @@ void	swap_a(t_stack *stack, t_bool ss)
 	stack->top_item = tmp->next;
 	tmp->next = stack->top_item->next;
 	stack->top_item->next = tmp;
-	if (ss == FALSE)
-		ft_putendl("sa");
 }
 
-void	swap_b(t_stack *stack, t_bool ss)
+void	swap_b_ch(t_stack *stack)
 {
 	t_list_ps	*tmp;
 
@@ -36,11 +34,9 @@ void	swap_b(t_stack *stack, t_bool ss)
 	stack->top_item = tmp->next;
 	tmp->next = stack->top_item->next;
 	stack->top_item->next = tmp;
-	if (ss == FALSE)
-		ft_putendl("sb");
 }
 
-void	push_a(t_stack *a, t_stack *b)
+void	push_a_ch(t_stack *a, t_stack *b)
 {
 	t_list_ps	*tmp;
 
@@ -55,10 +51,9 @@ void	push_a(t_stack *a, t_stack *b)
 	a->last_item = ft_lstlast_ps(a->top_item);
 	if (b->size == 0)
 		b->last_item = NULL;
-	ft_putendl("pa");
 }
 
-void	push_b(t_stack *a, t_stack *b)
+void	push_b_ch(t_stack *a, t_stack *b)
 {
 	t_list_ps	*tmp;
 
@@ -73,10 +68,9 @@ void	push_b(t_stack *a, t_stack *b)
 	b->last_item = ft_lstlast_ps(b->top_item);
 	if (a->size == 0)
 		a->last_item = NULL;
-	ft_putendl("pb");
 }
 
-void	rotate_a(t_stack *a, t_bool rr)
+void	rotate_a_ch(t_stack *a)
 {
 	t_list_ps	*tmp;
 
@@ -87,6 +81,4 @@ void	rotate_a(t_stack *a, t_bool rr)
 	tmp->next = NULL;
 	ft_lstadd_back_ps(&a->top_item, tmp);
 	a->last_item = ft_lstlast_ps(a->top_item);
-	if (rr == FALSE)
-		ft_putendl("ra");
 }

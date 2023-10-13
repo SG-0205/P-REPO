@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations_3.c                               :+:      :+:    :+:   */
+/*   stack_operations_3_ch.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:54:24 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/13 15:35:00 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:16:01 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void	swap_both(t_stack *a, t_stack *b)
+void	swap_both_ch(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
 		return ;
-	swap_a(a, TRUE);
-	swap_b(b, TRUE);
-	ft_putendl("ss");
+	swap_a_ch(a);
+	swap_b_ch(b);
 }
 
-void	rotate_all(t_stack *a, t_stack *b)
+void	rotate_all_ch(t_stack *a, t_stack *b)
 {
 	if (!a || !b)
 		return ;
-	rotate_a(a, TRUE);
-	rotate_b(b, TRUE);
-	ft_putendl("rr");
+	rotate_a_ch(a);
+	rotate_b_ch(b);
 }
 
-void	reverse_r_all(t_stack *a, t_stack *b)
+void	reverse_r_all_ch(t_stack *a, t_stack *b)
 {
 	if (!a || !b || a->size == 0 || b->size == 0)
 		return ;
-	reverse_r_a(a, TRUE);
-	reverse_r_b(b, TRUE);
-	ft_putendl("rrr");
+	reverse_r_a_ch(a);
+	reverse_r_b_ch(b);
 }

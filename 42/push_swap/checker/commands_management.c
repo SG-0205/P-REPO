@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 02:40:18 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/13 03:39:28 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:48:57 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ t_command	*ft_lstnew_ch(char *command)
 	if (!new)
 		return (NULL);
 	new->command = ft_strdup(command);
+	if (!new->command)
+		return (NULL);
+	free(command);
 	new->next = NULL;
 	return (new);
 }
@@ -44,6 +47,7 @@ void	ft_lstdelone_ch(t_command *lst)
 {
 	if (!lst)
 		return ;
+	free(lst->command);
 	free(lst);
 }
 
