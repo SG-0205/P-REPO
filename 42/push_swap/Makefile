@@ -6,14 +6,14 @@
 #    By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 17:57:21 by sgoldenb          #+#    #+#              #
-#    Updated: 2023/10/13 17:34:05 by sgoldenb         ###   ########.fr        #
+#    Updated: 2023/10/16 21:05:37 by sgoldenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CHECKER_NAME = checker
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 AR = ar -rc
 RM = rm -f
 

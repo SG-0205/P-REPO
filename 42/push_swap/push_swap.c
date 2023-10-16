@@ -6,28 +6,21 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:36:40 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/13 02:18:56 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/10/16 21:26:51 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	is_max(t_stack *stack)
+t_bool	contains_value(char *args_str)
 {
-	t_list_ps	*tmp;
-	int			top_val;
+	int	i;
 
-	if (!stack->top_item)
-		return (FALSE);
-	tmp = stack->top_item;
-	top_val = tmp->value;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		if (tmp->value > top_val)
-			return (FALSE);
-	}
-	return (TRUE);
+	i = -1;
+	while (args_str[++i])
+		if (ft_isdigit(args_str[i]) > 0)
+			return (TRUE);
+	return (FALSE);
 }
 
 void	free_split(char **splitted_args)
@@ -52,7 +45,11 @@ void	argc_check(int *argc, char **argv, t_stack *a, t_stack *b)
 		(free_all(a, b), error());
 	if (*argc == 2)
 	{
+		if (contains_value(argv[1]) == FALSE)
+			(free_all(a, b), exit(0));
 		splitted_argv = ft_split(argv[1], ' ');
+		if (split_len(splitted_argv) == 1)
+			return ((void)free_all(a, b), exit(0));
 		if (args_checker_split(*argc, splitted_argv) == FALSE)
 			(free_split(splitted_argv), free_all(a, b), error());
 		stack_init_split(a, b, splitted_argv);
