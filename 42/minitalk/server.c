@@ -6,50 +6,39 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:25:45 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/10/25 17:33:36 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/07 02:12:09 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minitalk.h"
+#include <unistd.h>
 
-int	add_zero(int sigusr1, char **binary_str)
+t_servdata	*g_data;
+
+void	recode_message(int sigid)
 {
-	int	i;
-
-	i = -1;
-	if (sigusr1 == SIGUSR1)
+	if (sigid == SIGUSR2)
+		*g_data->recoded_char |= (1 << g_data->received_bits);
+	g_data->received_bits += 1;
+	if (g_data->received_bits == 8)
 	{
-		while (*binary_str[i])
-			i ++;
-		*binary_str[i + 1] = (char *)malloc(sizeof(char));
-		if (!*binary_str[i + 1])
-			exit(2);
-		*binary_str[i + 1] = '0';
-	}
-}
-
-int	add_one(int sigusr2, char **binary_str)
-{
-	int	i;
-
-	i = -1;
-	if (sigusr2 == SIGUSR2)
-	{
-		while (*binary_str[i])
-			i ++;
-		*binary_str[i + 1] = (char *)malloc(sizeof(char));
-		if (!*binary_str[i + 1])
-			exit(2);
-		*binary_str[i + 1] = '1';
+		g_data->received_bits = 0;
+		g_data->received_msg = ft_strjoin(g_data->received_msg,
+				g_data->recoded_char);
+		g_data->recoded_char = 0;
 	}
 }
 
 int	main(void)
 {
-	char	*binary_str;
-
-	ft_printf("PID Serveur:\t%d\n", getpid());
-	signal(SIGUSR1, add_zero(SIGUSR1, &binary_str));
-	signal(SIGUSR2, add_one(SIGUSR2, &binary_str));
-	while (!binary_str);
+	g_data = (t_servdata *)malloc(sizeof(t_servdata));
+	g_data->received_bits = 0;
+	g_data->received_msg = (char *)malloc(sizeof(char) * 2);
+	g_data->recoded_char = 0;
+	ft_printf("PID Serveur:\t-=>[%d]<=-\n", getpid());
+	signal(SIGUSR1, recode_message);
+	signal(SIGUSR2, recode_message);
+	while (1)
+		usleep(1);
+	return (0);
 }
