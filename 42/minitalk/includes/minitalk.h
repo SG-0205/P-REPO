@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:36:23 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/11/08 17:45:14 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/13 18:56:36 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,12 @@ typedef struct s_servdata
 	char	*received_msg;
 	int		received_bits;
 }	t_servdata;
+
+typedef struct s_clientdata
+{
+	char	*pid_prefix;
+	char	*input;
+	char	*message;
+}	t_clientdata;
 
 #endif
