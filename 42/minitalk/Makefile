@@ -1,36 +1,32 @@
-NAME = minitalk
-SRVNAME = server
-CLINAME = client
-CC  = gcc
-CFLAGS = -Wall -Wextra -Werror 
-AR = ar -rc 
-RM = rm -f
+LIBFT = includes/ft_printf/libftprintf.a
 
-SRCSERV =	server.c
+CC = cc
+CCFLAGS = cc -Wall -Werror -Wextra
 
-SRCCLI = 	client.c
+SERVER = server
+CLIENT = client
+SRCS_SERVER = server.c
+SRCS_CLIENT = client.c
 
-OBJSERV	= ${SRCSERV:.c=.o}
-OBJCLI = ${SRCCLI:.c=.o}
+OBJS_SERVER = $(SRCS_SERVER:.c=.o)
+OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
-%.o%.c: ${SRCSERV} ${SRCCLI} 
-		$(CC) ${CFLAGS} -c -o $@ $< 
 
-${NAME}:	server client
-		
-all:	 ${NAME}
+all: $(LIBFT) $(SERVER) $(CLIENT)
 
-server: ${OBJSERV}
-		make all -C includes/ft_printf
-		${AR} ${OBJSERV} includes/ft_printf/libftprintf.a
+$(SERVER) $(CLIENT): $(OBJS_SERVER) $(OBJS_CLIENT) $(LIBFT)
+		${CCFLAGS} ${OBJS_SERVER} includes/ft_printf/libftprintf.a -o ${SERVER}
+		${CCFLAGS} ${OBJS_CLIENT} includes/ft_printf/libftprintf.a -o ${CLIENT}
 
-clean:
-		${RM} ${OBJSERV} ${OBJCLI}
-		make clean -C includes/ft_printf
+$(LIBFT):
+		make all -C ./includes/ft_printf/
 
-fclean: clean
-		${RM} ${NAME}
+clean:	
+		make clean -C ./includes/ft_printf/
+		rm -rf ${OBJS_SERVER} ${OBJS_CLIENT} ${OBJS_SERVER_BONUS} ${OBJS_CLIENT_BONUS}
 
-re: fclean  all  
+fclean:	clean
+		make fclean -C ./includes/ft_printf/
+		rm -rf $(SERVER) $(CLIENT)
 
-.PHONY: bonus all clean fclean re 
+re:	fclean all
