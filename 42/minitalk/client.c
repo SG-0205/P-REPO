@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:25:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/11/14 00:45:08 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/14 03:01:51 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 
 t_clientdata *g_clidata;
 
-void	init_data(void)
+void	init_data(char	*server_pid)
 {
 	int	i;
 
 	i = 0;
 	g_clidata = (t_clientdata *)malloc(sizeof(t_clientdata));
+	g_clidata->serv_pid = ft_atoi(server_pid);
 	g_clidata->input = ft_strnew(1);
 	if (!g_clidata->input)
 		(free(g_clidata), exit(1));
 	g_clidata->message = ft_strnew(1);
 	if (!g_clidata->message)
 		(free(g_clidata->input), free(g_clidata), exit(1));
-	g_clidata->pid_prefix = ft_itoa(getpid());
+	g_clidata->pid_prefix = ft_strdup(ft_itoa(getpid()));
 	if (!g_clidata->pid_prefix)
 		(free(g_clidata->input), free(g_clidata->message), free(g_clidata),
 			exit(1));
@@ -86,14 +87,11 @@ int	main(int argc, char **argv)
 		if (ft_isdigit(argv[1][i]) == 0)
 			return (1);
 	i = 0;
-	init_data();
+	init_data(argv[1]);
 	build_message(&argv[2], g_clidata);
 	signal(SIGUSR1, message_received);
-	ft_printf("En attente de confirmation");
-	i = -1;
-	while (++i < 10)
-		(ft_printf("."), sleep(1));
-	ft_printf(RED_TEXT "\nPas de signal de reception, verifier PID serveur.\n" RESET_COLOR);
+	send_message(g_clidata);
+	wait_reception();
 	destroy_data();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:25:45 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/11/14 00:00:01 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/14 02:48:46 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,40 @@ void	exit_and_free(int sigid)
 	}
 }
 
+void	print_messages(char **messages, char *client_pid)
+{
+	int		i;
+
+	i = -1;
+	while (messages[++i])
+	{
+		ft_printf(GREEN_TEXT DIM_TEXT "(%s): " RESET_COLOR, client_pid);
+		ft_printf(BLUE_TEXT ITALIC_TEXT "\"%s\"\n"
+			NO_ITALIC_TEXT RESET_COLOR, messages[i]);
+		if ((size_t)i == ft_array_len(messages))
+			kill(ft_atoi(client_pid), SIGUSR1);
+		else
+			kill(ft_atoi(client_pid), SIGUSR2);
+	}
+}
+
 void	split_message(void)
 {
-	char	**splitted_msg;
+	char	**extract_pid;
+	char	**messages;
 
-	splitted_msg = ft_split(g_servdata->received_msg, PID_SEPARATOR);
+	extract_pid = ft_split(g_servdata->received_msg, PID_SEPARATOR);
 	// ft_printf("split[0] =\t%s\nsplit[1] =\t%s\nNON SPLIT =\t%s\n", splitted_msg[0], splitted_msg[1], g_servdata->received_msg);
-	if (!splitted_msg)
+	if (!extract_pid)
 		exit_and_free(SIGINT);
-	kill(ft_atoi(splitted_msg[0]), SIGUSR1);
-	ft_printf(GREEN_TEXT DIM_TEXT "(%s): " RESET_COLOR, splitted_msg[0]);
-	ft_printf(BLUE_TEXT ITALIC_TEXT "\"%s\"\n" NO_ITALIC_TEXT RESET_COLOR, splitted_msg[1]);
+	messages = ft_split(extract_pid[1], MSG_SEPARATOR);
+	if (!messages)
+		exit_and_free(SIGINT);
+	print_messages(messages, extract_pid[0]);
 	g_servdata->received_bits = 0;
-	ft_bzero(g_servdata->received_msg, ft_strlen(g_servdata->received_msg));
+	ft_bzero(g_servdata->received_msg, ft_lentillc(g_servdata->received_msg, END_SEPARATOR));
 	g_servdata->recoded_char = 0;
-	free(splitted_msg);
+	(ft_free_array(extract_pid), ft_free_array(messages));
 }
 
 void	recode_message(int sigid)
@@ -56,7 +75,7 @@ void	recode_message(int sigid)
 		g_servdata->received_msg = ft_strjoin(g_servdata->received_msg,
 				&g_servdata->recoded_char);
 		// ft_printf("Décodé: %c - ASCII(%d)\n", g_servdata->recoded_char, g_servdata->recoded_char);
-		if (g_servdata->recoded_char == 0)
+		if (g_servdata->recoded_char == END_SEPARATOR)
 			split_message();
 		g_servdata->recoded_char = 0;
 	}

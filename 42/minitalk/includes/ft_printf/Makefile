@@ -81,6 +81,7 @@ SRC_LIBFT = ft_atoi.c\
 		ft_substr.c\
 		ft_tolower.c\
 		ft_toupper.c\
+		ft_free_array.c\
 
 PATH_LIB = libft/
 

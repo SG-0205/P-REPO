@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:40:57 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/11/13 23:33:18 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/14 02:30:18 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
+void				ft_free_array(char **array);
+size_t				ft_array_len(char **array);
 
 char				*ft_itoa(int n);
 

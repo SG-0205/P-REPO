@@ -1,12 +1,12 @@
 LIBFT = includes/ft_printf/libftprintf.a
 
-CC = cc
+CC = gcc
 CCFLAGS = cc -Wall -Werror -Wextra
 
 SERVER = server
 CLIENT = client
 SRCS_SERVER = server.c
-SRCS_CLIENT = client.c
+SRCS_CLIENT = client.c client_utils.c
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
@@ -14,8 +14,10 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
 all: $(LIBFT) $(SERVER) $(CLIENT) clean
 
-$(SERVER) $(CLIENT): $(OBJS_SERVER) $(OBJS_CLIENT) $(LIBFT)
+$(SERVER): $(OBJS_SERVER) $(LIBFT)
 		${CCFLAGS} ${OBJS_SERVER} includes/ft_printf/libftprintf.a -o ${SERVER}
+
+$(CLIENT): $(OBJS_CLIENT) $(LIBFT)
 		${CCFLAGS} ${OBJS_CLIENT} includes/ft_printf/libftprintf.a -o ${CLIENT}
 
 $(LIBFT):
