@@ -12,7 +12,7 @@ OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
 
-all: $(LIBFT) $(SERVER) $(CLIENT)
+all: $(LIBFT) $(SERVER) $(CLIENT) clean
 
 $(SERVER) $(CLIENT): $(OBJS_SERVER) $(OBJS_CLIENT) $(LIBFT)
 		${CCFLAGS} ${OBJS_SERVER} includes/ft_printf/libftprintf.a -o ${SERVER}

@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:40:57 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/05/20 18:37:27 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:33:18 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,42 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 
 int					ft_cisar(char c, const char *array);
+
+// Codes de couleurs ANSI pour le texte
+# define RESET_COLOR "\x1b[0m"
+# define BLACK_TEXT "\x1b[30m"
+# define RED_TEXT "\x1b[31m"
+# define GREEN_TEXT "\x1b[32m"
+# define YELLOW_TEXT "\x1b[33m"
+# define BLUE_TEXT "\x1b[34m"
+# define MAGENTA_TEXT "\x1b[35m"
+# define CYAN_TEXT "\x1b[36m"
+# define WHITE_TEXT "\x1b[37m"
+
+// Codes de couleurs ANSI pour l'arrière-plan
+# define BLACK_BG "\x1b[40m"
+# define RED_BG "\x1b[41m"
+# define GREEN_BG "\x1b[42m"
+# define YELLOW_BG "\x1b[43m"
+# define BLUE_BG "\x1b[44m"
+# define MAGENTA_BG "\x1b[45m"
+# define CYAN_BG "\x1b[46m"
+# define WHITE_BG "\x1b[47m"
+
+// Styles de texte
+# define BOLD_TEXT "\x1b[1m"
+# define DIM_TEXT "\x1b[2m"
+# define UNDERLINE_TEXT "\x1b[4m"
+# define BLINK_TEXT "\x1b[5m"
+# define REVERSE_TEXT "\x1b[7m"
+# define HIDDEN_TEXT "\x1b[8m"
+# define ITALIC_TEXT "\x1b[3m"
+# define NO_ITALIC_TEXT "\x1b[23m"
+
+// Codes de contrôle de curseur
+# define SAVE_CURSOR "\x1b[s"
+# define RESTORE_CURSOR "\x1b[u"
+# define HIDE_CURSOR "\x1b[?25l"
+# define SHOW_CURSOR "\x1b[?25h"
 
 #endif

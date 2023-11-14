@@ -6,7 +6,7 @@
 /*   By: sgoldenb <sgoldenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:25:52 by sgoldenb          #+#    #+#             */
-/*   Updated: 2023/11/13 19:46:54 by sgoldenb         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:45:08 by sgoldenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void	init_data(void)
 	if (!g_clidata->pid_prefix)
 		(free(g_clidata->input), free(g_clidata->message), free(g_clidata),
 			exit(1));
-	while (g_clidata->pid_prefix[i])
-		i ++;
-	g_clidata->pid_prefix[i] = MSG_SEPARATOR;
+	append_separator(g_clidata->pid_prefix, PID_SEPARATOR);
 }
 
 void	destroy_data(void)
@@ -65,13 +63,16 @@ void	message_received(int sigid)
 {
 	if (sigid == SIGUSR1)
 	{
-		ft_putendl("Message reçu!");
+		ft_putendl(GREEN_TEXT "Message reçu! - Fermeture du client"
+			RESET_COLOR);
 		free(g_clidata->input);
 		free(g_clidata->message);
 		free(g_clidata->pid_prefix);
 		free(g_clidata);
 		exit(0);
 	}
+	else if (sigid == SIGUSR2)
+		ft_putendl(GREEN_TEXT "Message reçu!" RESET_COLOR);
 }
 
 int	main(int argc, char **argv)
@@ -86,19 +87,13 @@ int	main(int argc, char **argv)
 			return (1);
 	i = 0;
 	init_data();
-	g_clidata->message = ft_strjoin(g_clidata->pid_prefix, ft_strdup(argv[2]));
-	if (!g_clidata->message)
-		return (1);
-	i = -1;
+	build_message(&argv[2], g_clidata);
 	signal(SIGUSR1, message_received);
-	while (g_clidata->message[++i])
-		send_str_bits(g_clidata->message[i], ft_atoi(argv[1]));
-	send_str_bits(g_clidata->message[i], ft_atoi(argv[1]));
 	ft_printf("En attente de confirmation");
 	i = -1;
 	while (++i < 10)
 		(ft_printf("."), sleep(1));
-	ft_printf("\nPas de signal de reception, verifier PID serveur.\n");
+	ft_printf(RED_TEXT "\nPas de signal de reception, verifier PID serveur.\n" RESET_COLOR);
 	destroy_data();
 	return (0);
 }
