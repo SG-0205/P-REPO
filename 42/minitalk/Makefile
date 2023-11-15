@@ -1,7 +1,7 @@
 LIBFT = includes/ft_printf/libftprintf.a
 
-CC = gcc
-CCFLAGS = cc -Wall -Werror -Wextra
+CC = gcc -Wall -Werror -Wextra -g3
+CCFLAGS = cc -Wall -Werror -Wextra -g3
 
 SERVER = server
 CLIENT = client
